@@ -1,0 +1,90 @@
+unit Uusuario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Data.DB, IBX.IBCustomDataSet, IBX.IBQuery;
+
+type
+  TFrmUsuario = class(TForm)
+    Elogin: TEdit;
+    Esenha: TEdit;
+    EconfirmaSenha: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    IBQuerycad: TIBQuery;
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmUsuario: TFrmUsuario;
+
+implementation
+
+{$R *.dfm}
+
+uses Uprincipal;
+
+procedure TFrmUsuario.BitBtn1Click(Sender: TObject);
+begin
+ Elogin.Text:= Trim(Elogin.text);
+  if (Elogin.Text = '') then
+   begin
+   showmessage('Campo de login vazio!');
+  end;
+  if (Esenha.Text <> EconfirmaSenha.text)then
+   begin
+   Application.MessageBox('As senhas Não Conferem','Atenção',MB_ICONERROR);
+   Esenha.SetFocus;
+   end;
+    if (Esenha.Text = EconfirmaSenha.text) and (Elogin.Text <> '')then
+     begin
+      IBQuerycad.Close;
+      IBQuerycad.SQL.text:='UPDATE USUARIO SET LOGIN=:login,SENHA=:senha,DATA_REG=:data WHERE ID_USER=:id';
+      IBQuerycad.ParamByName('id').Asinteger:=1;
+      IBQuerycad.ParamByName('login').AsString:=elogin.Text;
+      IBQuerycad.ParamByName('senha').AsString:=Esenha.Text;
+      IBQuerycad.ParamByName('data').AsDate:=date;
+      IBQuerycad.ExecSQL;
+      Elogin.Clear;Esenha.Clear;EconfirmaSenha.Clear;
+      close;
+      End;
+
+ end;
+
+procedure TFrmUsuario.BitBtn3Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TFrmUsuario.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if ((ssAlt in Shift) and (Key = VK_F4)) then
+Key := 0;
+end;
+
+procedure TFrmUsuario.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  If key = #13 then
+   Begin
+    Key:= #0;
+    Perform(Wm_NextDlgCtl,0,0);
+end;
+end;
+
+end.

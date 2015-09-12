@@ -1,0 +1,38 @@
+unit Ureceber;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
+  Vcl.DBGrids, Vcl.ExtCtrls;
+
+type
+  TForm8 = class(TForm)
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit1: TEdit;
+    BitBtn1: TBitBtn;
+    Label3: TLabel;
+    Panel1: TPanel;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form8: TForm8;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015/08/19 00:50:21.000.490,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/08/19 00:50:33.000.534,C:\SGOS\PROJETO\Ulogin.pas=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/08/19 00:50:33.000.534,C:\SGOS\PROJETO\Ulogin.dfm=C:\SGOS\PROJETO\Unit2.dfm</Transaction>
+    <Transaction>2015/08/19 01:09:08.000.419,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/08/19 01:09:20.000.005,C:\SGOS\PROJETO\Usplash.pas=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/08/19 01:09:20.000.005,C:\SGOS\PROJETO\Usplash.dfm=C:\SGOS\PROJETO\Unit2.dfm</Transaction>
+    <Transaction>2015/08/22 16:22:31.000.214,C:\SGOS\PROJETO\Uproduto.dfm=C:\SGOS\PROJETO\Uequipamento.dfm</Transaction>
+    <Transaction>2015/08/22 16:22:31.000.214,C:\SGOS\PROJETO\Uproduto.pas=C:\SGOS\PROJETO\Uequipamento.pas</Transaction>
+    <Transaction>2015/08/23 10:47:20.000.850,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/08/23 10:47:34.000.601,C:\SGOS\PROJETO\Unit2.pas=C:\SGOS\PROJETO\UConfiguracao.pas</Transaction>
+    <Transaction>2015/08/23 10:47:34.000.601,C:\SGOS\PROJETO\Unit2.dfm=C:\SGOS\PROJETO\UConfiguracao.dfm</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="UBuscaPessoa.pas"/>
+    <File Path="UBuscaPessoa.dfm"/>
+    <File Path="UbuscasReceber.pas"/>
+    <File Path="UbuscasReceber.dfm"/>
+    <File Path="Ucaixa.pas"/>
+    <File Path="Ucaixa.dfm"/>
+    <File Path="Ucidade.pas"/>
+    <File Path="Ucidade.dfm"/>
+    <File Path="UGOS.pas"/>
+    <File Path="UGOS.dfm"/>
+    <File Path="UitemOs.pas"/>
+    <File Path="UitemOs.dfm"/>
+    <File Path="Ulogin.pas"/>
+    <File Path="Ulogin.dfm"/>
+    <File Path="UnovaReceber.pas"/>
+    <File Path="UnovaReceber.dfm"/>
+    <File Path="UnovoPagar.pas"/>
+    <File Path="UnovoPagar.dfm"/>
+    <File Path="Uos.pas"/>
+    <File Path="Uos.dfm"/>
+    <File Path="Upagar.pas"/>
+    <File Path="Upagar.dfm"/>
+    <File Path="Upessoa.pas"/>
+    <File Path="Upessoa.dfm"/>
+    <File Path="Uprincipal.pas"/>
+    <File Path="Uprincipal.dfm"/>
+    <File Path="Uequipamento.pas"/>
+    <File Path="Uequipamento.dfm"/>
+    <File Path="Ureceber.pas"/>
+    <File Path="Ureceber.dfm"/>
+    <File Path="UServico.pas"/>
+    <File Path="UServico.dfm"/>
+    <File Path="Usplash.pas"/>
+    <File Path="Usplash.dfm"/>
+    <File Path="Uusuario.pas"/>
+    <File Path="Uusuario.dfm"/>
+    <File Path="UConfiguracao.pas"/>
+    <File Path="UConfiguracao.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

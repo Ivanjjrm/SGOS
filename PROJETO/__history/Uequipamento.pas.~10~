@@ -1,0 +1,113 @@
+unit Uequipamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Grids, Vcl.DBGrids, Data.DB, IBX.IBCustomDataSet, IBX.IBQuery, Uprincipal;
+
+type
+  TFrmEquipamento = class(TForm)
+    Eequipamento: TEdit;
+    Label1: TLabel;
+    Ebusca: TEdit;
+    Label2: TLabel;
+    DBGrid1: TDBGrid;
+    Panel1: TPanel;
+    BitBtn4: TBitBtn;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    IBQuerycad: TIBQuery;
+    DataSourceBusca: TDataSource;
+    IBQuerybusca: TIBQuery;
+    Eid: TEdit;
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmEquipamento: TFrmEquipamento;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmEquipamento.BitBtn1Click(Sender: TObject);
+begin
+try
+  begin
+    if (Eid.Text <> '') then
+    if (Application.MessageBox('Deseja realmente excluir esse equipamento?','Atenção Usuário',MB_YESNO+MB_ICONQUESTION)=6) then
+      begin
+        IBQuerycad.Close;
+        IBQuerycad.sql.Text:=('DELETE FROM EQUIPAMENTO WHERE ID_EQUIP = :id');
+        IBQuerycad.ParamByName('id').AsString := Eid.Text;
+        IBQuerycad.ExecSQL;
+        IBQuerybusca.active:= FALSE;
+        IBQuerybusca.active:= true;
+        Eid.Clear;Eequipamento.Clear;
+        end;
+    end;
+      except
+       on e: Exception do
+      begin
+        Application.MessageBox('Não é possivel Excluir! Existem referências desta Cidade no sistema!','Atenção Usuário',MB_ICONERROR);
+      end;
+  end;
+end;
+
+procedure TFrmEquipamento.BitBtn3Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TFrmEquipamento.BitBtn4Click(Sender: TObject);
+begin
+if (Eequipamento.text = '') then
+begin
+Eequipamento.setfocus;
+end;
+
+ if (Eid.Text = '') and (Eequipamento.Text <> '') then
+  begin
+   IBQueryCad.Close;
+   IBQueryCAd.SQL.Text:='INSERT INTO EQUIPAMENTO (ID_EQUIP,NOME_EQUIP,DATA_CAD) VALUES (:id,:nome,:data)';
+   IBQuerycad.ParamByName('id').Asinteger:=0;
+   IBQuerycad.ParamByName('nome').AsString:=Eequipamento.Text;
+   IBQuerycad.ParamByName('data').Asdate:=date;
+   IBQuerycad.ExecSQL;
+   IBQuerybusca.active:= FALSE;
+   IBQuerybusca.active:= true;
+   Eid.Clear;Eequipamento.Clear;
+  end;
+
+   if(Eid.Text <> '') and (Eequipamento.Text <> '') then
+    begin
+     IBQueryCad.Close;
+     IBQueryCad.SQL.Text:='UPDATE EQUIPAMENTO SET NOME_EQUIP=:nome, DATA_CAD=:data WHERE ID_EQUIP = :id';
+     IBQuerycad.ParamByName('id').Asinteger:=Strtoint(Eid.Text);
+     IBQuerycad.ParamByName('nome').AsString:=Eequipamento.Text;
+     IBQuerycad.ParamByName('data').Asdate:=date;
+     IBQuerycad.ExecSQL;
+     IBQuerybusca.active:= FALSE;
+     IBQuerybusca.active:= true;
+     Eid.Clear;Eequipamento.Clear;
+    end;
+
+
+end;
+
+procedure TFrmEquipamento.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+Eid.Clear;Eequipamento.Clear;
+end;
+
+end.

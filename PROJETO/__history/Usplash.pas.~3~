@@ -1,0 +1,84 @@
+unit Usplash;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.StdCtrls;
+
+type
+  TFrmSplash = class(TForm)
+    ProgressBar1: TProgressBar;
+    Timer1: TTimer;
+    Bevel1: TBevel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    procedure Timer1Timer(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmSplash: TFrmSplash;
+
+implementation
+
+{$R *.dfm}
+
+uses Uprincipal;
+
+procedure TFrmSplash.Timer1Timer(Sender: TObject);
+var
+   f:TextFile;
+   linha:String;
+   caminho,camino1: string;
+begin
+Label1.Caption:='Carregando Modulos';
+ProgressBar1.Position:=10;
+Sleep(200);
+ProgressBar1.Position:=20;
+Sleep(300);
+ProgressBar1.Position:=30;
+Sleep(400);
+ProgressBar1.Position:=35;
+Sleep(200);
+Label1.Caption:='Verificando Conexão com a base de Dados';
+  caminho:= ParamStr(0);
+  caminho:=ExtractFilePath(caminho);
+  camino1 := (caminho+'ENDERECO.CFG');
+
+   AssignFile(f,camino1);
+   Reset(f);
+
+   While not eof(f) do begin
+     Readln(f,linha);
+
+   End;
+  try
+begin
+Form1.IBDatabase.DatabaseName:=linha;
+Form1.Ibdatabase.Connected:= true;
+Form1.IBTransaction.active := true;
+end;
+  except
+  on e: Exception do
+  begin
+    Showmessage('Não foi possivel Conectar ao Banco de Dados!');
+    form1.close;
+  end;
+end;
+
+   Closefile(f);
+
+ProgressBar1.Position:=50;
+Sleep(200);
+ProgressBar1.Position:=70;
+Sleep(300);
+ProgressBar1.Position:=100;
+Sleep(200);
+end;
+
+end.

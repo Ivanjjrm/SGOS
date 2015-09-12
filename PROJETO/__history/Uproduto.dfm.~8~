@@ -1,0 +1,98 @@
+object Produto: TProduto
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Gest'#227'o Produto'
+  ClientHeight = 238
+  ClientWidth = 340
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 8
+    Width = 42
+    Height = 13
+    Caption = 'Produto:'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 64
+    Width = 36
+    Height = 13
+    Caption = 'Buscar:'
+  end
+  object Edit1: TEdit
+    Left = 8
+    Top = 27
+    Width = 233
+    Height = 21
+    TabOrder = 0
+  end
+  object Edit2: TEdit
+    Left = 8
+    Top = 77
+    Width = 233
+    Height = 21
+    TabOrder = 1
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 112
+    Width = 233
+    Height = 120
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object Panel1: TPanel
+    Left = 243
+    Top = -5
+    Width = 150
+    Height = 247
+    TabOrder = 3
+    object BitBtn4: TBitBtn
+      Left = 0
+      Top = 60
+      Width = 97
+      Height = 45
+      Caption = 'Gravar'
+      TabOrder = 0
+    end
+    object BitBtn1: TBitBtn
+      Left = 0
+      Top = 104
+      Width = 97
+      Height = 45
+      Caption = 'Excluir'
+      TabOrder = 1
+    end
+    object BitBtn2: TBitBtn
+      Left = 0
+      Top = 148
+      Width = 97
+      Height = 45
+      Caption = 'cancelar'
+      TabOrder = 2
+    end
+    object BitBtn3: TBitBtn
+      Left = 0
+      Top = 192
+      Width = 97
+      Height = 45
+      Caption = 'Sair'
+      TabOrder = 3
+      OnClick = BitBtn3Click
+    end
+  end
+end

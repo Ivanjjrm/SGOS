@@ -1,0 +1,249 @@
+unit Uos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Buttons, Uprincipal, Data.DB,
+  IBX.IBCustomDataSet, IBX.IBQuery, Uequipamento, Vcl.Mask;
+
+type
+  TFrmNovaOs = class(TForm)
+    Enome: TEdit;
+    Label1: TLabel;
+    BitBtn1: TBitBtn;
+    Label2: TLabel;
+    BitBtn2: TBitBtn;
+    Mdefeito: TMemo;
+    Label3: TLabel;
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
+    BitBtn3: TBitBtn;
+    Label4: TLabel;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    Eidpessoa: TEdit;
+    IBQueryEquip: TIBQuery;
+    DataSourceEquip: TDataSource;
+    IBQueryEquipID_EQUIP: TIntegerField;
+    IBQueryEquipNOME_EQUIP: TIBStringField;
+    IBQueryEquipDATA_CAD: TDateField;
+    DBLookupComboBox1: TDBLookupComboBox;
+    IBQuerycad: TIBQuery;
+    IBQuerymax: TIBQuery;
+    IBQuerymaxMAX: TIntegerField;
+    DBEidOs: TDBEdit;
+    DataSourcemax: TDataSource;
+    Label6: TLabel;
+    Edesc: TEdit;
+    IBQuerygrid: TIBQuery;
+    DataSourcegrid: TDataSource;
+    Eiditem: TEdit;
+    BitBtn7: TBitBtn;
+    procedure BitBtn6Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure DBGrid1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DBGrid1DblClick(Sender: TObject);
+    procedure BitBtn7Click(Sender: TObject);
+    procedure DBLookupComboBox1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmNovaOs: TFrmNovaOs;
+
+implementation
+
+{$R *.dfm}
+
+uses UBuscaPessoa;
+
+procedure TFrmNovaOs.BitBtn1Click(Sender: TObject);
+begin
+FrmBuscaPessoa.ShowModal;
+end;
+
+procedure TFrmNovaOs.BitBtn2Click(Sender: TObject);
+begin
+FrmEquipamento.ShowModal;
+IBQueryEquip.Close;
+IBQueryEquip.Open;
+end;
+
+procedure TFrmNovaOs.BitBtn3Click(Sender: TObject);
+begin
+if (Eidpessoa.Text = '') then
+begin
+Showmessage('Selecione um Cliente!');
+end;
+if (DBLookupComboBox1.KeyValue = 0) then
+Begin
+Showmessage('Selecione o Equipamento!');
+DBLookupComboBox1.SetFocus;
+End;
+if (Eidpessoa.Text <> '') And (DBEidOs.Text = '') and (DBLookupComboBox1.KeyValue > 0) and (Eiditem.Text = '') then
+begin
+IBQueryCad.Close;
+   IBQuerycad.SQL.Text:='INSERT INTO OS (ID_OS, DATA_ABERTA,STATUS,ID_CAD_FK) VALUES (:id,:data,:status,:id_cad)';
+   IBQuerycad.ParamByName('id').Asinteger:=0;
+   IBQuerycad.ParamByName('data').AsDate:=date;
+   IBQuerycad.ParamByName('status').AsString:='ABERTA';
+   IBQuerycad.ParamByName('id_cad').AsInteger:=Strtoint(Eidpessoa.Text);
+   IBQuerycad.ExecSQL;
+   BitBtn1.Enabled:=false;
+   Ibquerymax.Close;
+   Ibquerymax.Open;
+end;
+  if (DBEidOs.Text <> '') and (DBLookupComboBox1.KeyValue > 0) and (Eiditem.Text = '') and (Eidpessoa.Text <> '') then
+    begin
+    IBQuerycad.Close;
+    IBQuerycad.SQL.Text:='INSERT INTO ITEM_OS (ID_ITEM, DEFEITO, IDENTIFICACAO, ID_EQUIP_FK, ID_OS_FK) '+
+    'VALUES (:id,:defeito,:identificacao,:id_equip,:id_os)';
+    IBQuerycad.ParamByName('id').Asinteger:=0;
+    IBQuerycad.ParamByName('defeito').AsString:=Mdefeito.Text;
+    IBQuerycad.ParamByName('identificacao').AsString:=Edesc.Text;
+    IBQuerycad.ParamByName('id_equip').AsInteger:=(DBLookupComboBox1.KeyValue);
+    IBQuerycad.ParamByName('id_os').Asinteger:=Strtoint(DBEidOs.Text);
+    IBQuerycad.ExecSQL;
+    DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;
+    end;
+
+    if (DBEidOs.Text <> '') and (DBLookupComboBox1.KeyValue > 0) and (Eiditem.Text <> '') and (Eidpessoa.Text <> '') then
+    begin
+    IBQueryCad.Close;
+     IBQueryCad.SQL.Text:='UPDATE ITEM_OS SET DEFEITO=:defeito,IDENTIFICACAO=:identificacao,ID_EQUIP_FK=:id_equip,ID_OS_FK=:id_os WHERE ID_ITEM =:id';
+IBQuerycad.ParamByName('id').Asinteger:=Strtoint(Eiditem.Text);
+    IBQuerycad.ParamByName('defeito').AsString:=Mdefeito.Text;
+    IBQuerycad.ParamByName('identificacao').AsString:=Edesc.Text;
+    IBQuerycad.ParamByName('id_equip').AsInteger:=(DBLookupComboBox1.KeyValue);
+    IBQuerycad.ParamByName('id_os').Asinteger:=Strtoint(DBEidOs.Text);
+     IBQuerycad.ExecSQL;
+    end;
+
+
+    IBQuerygrid.active := false;
+    IBQuerygrid.sql.clear;
+    IBQuerygrid.sql.add('SELECT I.ID_ITEM,I.DEFEITO,I.IDENTIFICACAO,I.ID_EQUIP_FK, '+
+    'E.NOME_EQUIP,I.ID_OS_FK FROM ITEM_OS AS I INNER JOIN '+
+    'EQUIPAMENTO AS E ON E.ID_EQUIP = I.ID_EQUIP_FK WHERE I.ID_OS_FK = :id_os ');
+    if DBEidOs.Text = '' then
+    begin
+    IBQuerygrid.ParamByName('id_os').Asinteger:=0;
+    end
+    else
+    IBQuerygrid.ParamByName('id_os').Asinteger:=Strtoint(DBEidOs.Text);
+    IBQuerygrid.active:= true;
+    DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;Eiditem.Clear;
+end;
+
+procedure TFrmNovaOs.BitBtn4Click(Sender: TObject);
+begin
+DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;
+BitBtn1.Enabled:=true;
+close;
+IBQuerygrid.Active:=false;
+end;
+
+procedure TFrmNovaOs.BitBtn5Click(Sender: TObject);
+
+  begin
+    if (Application.MessageBox('Deseja Realmente Cancelar essa Ordem de Serviço?','Atenção Usuário',MB_YESNO+MB_ICONQUESTION)=6) then
+      if (DBEidOs.Text <> '') then
+      begin
+        IBQuerycad.Close;
+        IBQuerycad.sql.Text:=('DELETE FROM ITEM_OS WHERE ID_OS_FK = :id');
+        IBQuerycad.ParamByName('id').AsString := DBEidOs.Text;
+        IBQuerycad.ExecSQL;
+
+        IBQuerycad.Close;
+        IBQuerycad.sql.Text:=('DELETE FROM OS WHERE ID_OS = :id');
+        IBQuerycad.ParamByName('id').AsString := DBEidOs.Text;
+        IBQuerycad.ExecSQL;
+        DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;
+        DBEidOs.Clear;Enome.Clear;Eidpessoa.Clear;
+        IBQuerygrid.Active:=false;
+        end;
+
+        if (DBEidOs.Text = '') then
+        begin
+        DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;
+        DBEidOs.Clear;Enome.Clear;Eidpessoa.Clear;
+        IBQuerygrid.Active:=false;
+        end;
+    end;
+
+
+procedure TFrmNovaOs.BitBtn6Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TFrmNovaOs.BitBtn7Click(Sender: TObject);
+begin
+DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;Eiditem.Clear;
+end;
+
+procedure TFrmNovaOs.DBGrid1DblClick(Sender: TObject);
+begin
+if (IBQuerygrid.RecordCount > 0)  then
+Begin
+if (DBLookupComboBox1.KeyValue > 0) and (Application.MessageBox('Existe equipamento sendo lançando, deseja cancelar lançamento e alterar o registro selecionado?','Atenção Usuário',MB_YESNO+MB_ICONQUESTION)=6) then
+begin
+DBLookupComboBox1.KeyValue:=(DbGrid1.Columns.Items[4].Field).AsString;
+Edesc.Text:=(DbGrid1.Columns.Items[3].Field).AsString;
+Mdefeito.Text:=(DbGrid1.Columns.Items[2].Field).AsString;
+Eiditem.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+end
+else if (DBLookupComboBox1.KeyValue = 0) then
+begin
+DBLookupComboBox1.KeyValue:=(DbGrid1.Columns.Items[4].Field).AsString;
+Edesc.Text:=(DbGrid1.Columns.Items[3].Field).AsString;
+Mdefeito.Text:=(DbGrid1.Columns.Items[2].Field).AsString;
+Eiditem.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+end;
+End;
+end;
+
+procedure TFrmNovaOs.DBGrid1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if (Key = VK_DELETE) then
+  begin
+    if (IBQuerygrid.RecordCount > 0) then
+    if (Application.MessageBox('Deseja Realmente Excluir esse Lançamento?','Atenção Usuário',MB_YESNO+MB_ICONQUESTION)=6) then
+      begin
+        IBQuerycad.Close;
+        IBQuerycad.sql.Text:=('DELETE FROM ITEM_OS WHERE ID_ITEM = :id');
+        IBQuerycad.ParamByName('id').AsString := (DbGrid1.Columns.Items[0].Field).AsString;
+        IBQuerycad.ExecSQL;
+        IBQuerygrid.active:= FALSE;
+        IBQuerygrid.active:= true;
+        end;
+end;
+end;
+
+procedure TFrmNovaOs.DBLookupComboBox1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+if (Key = VK_DELETE) then
+DBLookupComboBox1.KeyValue:=0;
+end;
+
+procedure TFrmNovaOs.FormShow(Sender: TObject);
+begin
+DBEidOs.Text:='';
+end;
+
+end.

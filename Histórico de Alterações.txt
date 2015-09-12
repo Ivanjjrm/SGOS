@@ -1,0 +1,52 @@
+Alterações
+
+Dia 17-08 Horário 11:30 até as 01:20 ---------------------------------------------------------------
+
+Digitei o Script para A criação do BAnco de dados que está na Pasta Projeto com o nome de "SQL.txt".
+Implementei a tela de alteração de dados do usuário e validação do login.
+
+Dia 18-08 Horário 11:50 até as 01:55 ---------------------------------------------------------------
+
+Em conversa com o professor armando Ficou definido que O software será desenvolvido em DelphiXe6 e
+não mais no Delphi7. Então a Tela de Login e dados do usuário foram refeitas e tambem essa noite
+foi implementado a tela de Splash e foi configurado para o Sistema buscar o enderoço do Banco de Dados
+a partir de um arquivo na mesma pasta do executavel.
+
+Dia 19-08 Horário 11:30 até as 02:30 ---------------------------------------------------------------
+
+Foi implementado a tela de cadastro de cidade já com as todas as validações dos campos e atela de cadastro
+de pessoa fisica, o cadastro de pessoa juridica somente está pendente a validação do CNPJ.
+
+
+Dia 21-08 Horário 19:20 até as 20:00 ---------------------------------------------------------------
+
+Foi dado a incio a implementação a tela de buscar pessoa, para que se conseguisse dar procedimento a
+tela de cadastro de Pessa para fazer os procedimentos de alterar e excluir.
+
+Dia 22-08 Horário 00:05 até as 03:25 ---------------------------------------------------------------
+
+Foi completado a emprelemntação da tela de FrmBuscaPessoa com 4 tipos de busca diferentes
+(Código, Nome, CPF, CNPJ) para o usuario conseguir selecionar o cadastro
+que deseja alterar. E tambem emplementado a opção excluir pessoa. E por fim emplementada a função que valida
+o CNPJ do cadastro de pessoa Juridica, que tinha ficado pendente do dia 19-08.
+
+Dia 09:30 Horário 11:00 até as 03:25 ---------------------------------------------------------------
+
+Foi completado Implementado a tela de Cadastro de Equipamento, E dado incio na implementação na tela de cadastro
+de Serviço
+
+Dia 26-08 Horário 11:37 até as 01:00 ---------------------------------------------------------------
+
+Foi concluido a tela de Cadastro Serviço e inciado a implementação da de configurações do sistema.
+
+
+Dia 29-08 Horário 17:02 até as 17:30 ---------------------------------------------------------------
+
+Foi implementado a tela de Configurações, somente faltando implementar a validação do CPF/CNPJ.
+
+Dia 30-08 Horário 01:04 até as 04:29 ---------------------------------------------------------------
+
+Foi implementado a tela de abertura de Ordem de serviço, já com as veirificações de cancelamento de
+Ordem de Serviço, e até excluzão de equipamento lançado errado, e alteração do equipamento lançado
+com verificação. E inciado a implementação de busca de Ordens de Serviço apenas para verificar se
+estava buscando as OS corretamente.

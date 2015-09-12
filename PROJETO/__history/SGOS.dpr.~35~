@@ -1,0 +1,50 @@
+program SGOS;
+
+uses
+  Vcl.Forms,
+  Uprincipal in 'Uprincipal.pas' {Form1},
+  Ucidade in 'Ucidade.pas' {Cidade},
+  Uusuario in 'Uusuario.pas' {FrmUsuario},
+  Upessoa in 'Upessoa.pas' {Pessoa},
+  Uproduto in 'Uproduto.pas' {Equipamento},
+  UServico in 'UServico.pas' {Servico},
+  UGOS in 'UGOS.pas' {Gos},
+  UBuscaPessoa in 'UBuscaPessoa.pas' {BuscaNome},
+  Uos in 'Uos.pas' {NovaOs},
+  UitemOs in 'UitemOs.pas' {ItemOs},
+  Ureceber in 'Ureceber.pas' {Receber},
+  UbuscasReceber in 'UbuscasReceber.pas' {BuscaReceber},
+  UnovaReceber in 'UnovaReceber.pas' {NovoReceber},
+  Upagar in 'Upagar.pas' {Pagar},
+  UnovoPagar in 'UnovoPagar.pas' {NovoPagar},
+  Ucaixa in 'Ucaixa.pas' {Caixa},
+  Vcl.Themes,
+  Vcl.Styles,
+  Ulogin in 'Ulogin.pas' {Frmlogin},
+  Usplash in 'Usplash.pas' {FrmSplash};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TCidade, Cidade);
+  Application.CreateForm(TFrmSplash, FrmSplash);
+  Application.CreateForm(TFrmUsuario, FrmUsuario);
+  Application.CreateForm(TPessoa, Pessoa);
+  Application.CreateForm(TEquipamento, Equipamento);
+  Application.CreateForm(TServico, Servico);
+  Application.CreateForm(TGos, Gos);
+  Application.CreateForm(TBuscaNome, BuscaNome);
+  Application.CreateForm(TNovaOs, NovaOs);
+  Application.CreateForm(TItemOs, ItemOs);
+  Application.CreateForm(TReceber, Receber);
+  Application.CreateForm(TBuscaReceber, BuscaReceber);
+  Application.CreateForm(TNovoReceber, NovoReceber);
+  Application.CreateForm(TPagar, Pagar);
+  Application.CreateForm(TNovoPagar, NovoPagar);
+  Application.CreateForm(TCaixa, Caixa);
+  Application.CreateForm(TFrmlogin, Frmlogin);
+  Application.Run;
+end.

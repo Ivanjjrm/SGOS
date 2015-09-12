@@ -1,0 +1,68 @@
+unit Ulogin;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,
+  IBX.IBCustomDataSet, IBX.IBQuery;
+
+type
+  TFrmlogin = class(TForm)
+    Elogin: TEdit;
+    Esenha: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    IBQueryBusca: TIBQuery;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frmlogin: TFrmlogin;
+
+implementation
+
+{$R *.dfm}
+
+uses Uprincipal;
+
+procedure TFrmlogin.BitBtn1Click(Sender: TObject);
+begin
+Elogin.text:=trim(Elogin.text);
+if (Elogin.text = '') then
+begin
+showmessage('Campo do usuário está vazio!');
+end;
+if (Elogin.text <> '') then
+begin
+IBQuerybusca.Active := false;
+IBQuerybusca.sql.clear;
+IBQuerybusca.sql.add('SELECT * FROM USUARIO WHERE LOGIN =:login AND SENHA=:senha');
+IBQuerybusca.ParamByName('login').AsString := Elogin.text;
+IBQuerybusca.ParamByName('senha').AsString := Esenha.text;
+IBQuerybusca.active:= true;
+
+if (IBQuerybusca.RecordCount > 0) then
+begin
+close;
+end
+else
+showmessage('Usário ou senha invalidos!');
+Elogin.setfocus;
+end;
+end;
+
+procedure TFrmlogin.BitBtn2Click(Sender: TObject);
+begin
+close;
+Form1.Close;
+end;
+
+end.

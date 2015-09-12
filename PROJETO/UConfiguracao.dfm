@@ -1,0 +1,181 @@
+object FrmConfig: TFrmConfig
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Configura'#231#245'es'
+  ClientHeight = 190
+  ClientWidth = 506
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Bevel1: TBevel
+    Left = 399
+    Top = -3
+    Width = 122
+    Height = 212
+  end
+  object Label1: TLabel
+    Left = 8
+    Top = 21
+    Width = 107
+    Height = 13
+    Caption = 'Nome do respensavel:'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 40
+    Width = 45
+    Height = 13
+    Caption = 'Fantasia:'
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 80
+    Width = 37
+    Height = 13
+    Caption = 'Tel\Cel:'
+  end
+  object Label4: TLabel
+    Left = 271
+    Top = 21
+    Width = 3
+    Height = 13
+  end
+  object Label5: TLabel
+    Left = 216
+    Top = 101
+    Width = 32
+    Height = 13
+    Caption = 'E-mail:'
+  end
+  object Label6: TLabel
+    Left = 8
+    Top = 101
+    Width = 37
+    Height = 13
+    Caption = 'Tel\Cel:'
+  end
+  object Label7: TLabel
+    Left = 8
+    Top = 143
+    Width = 157
+    Height = 13
+    Caption = 'Juros ao m'#234's de Conta Receber:'
+  end
+  object Label8: TLabel
+    Left = 217
+    Top = 143
+    Width = 126
+    Height = 13
+    Caption = 'Carencia para in'#237'cio Juros:'
+  end
+  object Label9: TLabel
+    Left = 8
+    Top = 61
+    Width = 45
+    Height = 13
+    Caption = 'Fantasia:'
+  end
+  object Etel: TEdit
+    Left = 8
+    Top = 116
+    Width = 177
+    Height = 21
+    CharCase = ecUpperCase
+    MaxLength = 20
+    TabOrder = 0
+  end
+  object Enome: TEdit
+    Left = 8
+    Top = 34
+    Width = 257
+    Height = 21
+    CharCase = ecUpperCase
+    MaxLength = 60
+    TabOrder = 1
+  end
+  object Ecarencia: TEdit
+    Left = 217
+    Top = 157
+    Width = 176
+    Height = 21
+    MaxLength = 4
+    TabOrder = 2
+    OnKeyPress = EcarenciaKeyPress
+  end
+  object Eemail: TEdit
+    Left = 216
+    Top = 116
+    Width = 177
+    Height = 21
+    CharCase = ecUpperCase
+    MaxLength = 60
+    TabOrder = 3
+  end
+  object Efantasia: TEdit
+    Left = 8
+    Top = 74
+    Width = 384
+    Height = 21
+    CharCase = ecUpperCase
+    MaxLength = 60
+    TabOrder = 4
+  end
+  object Ejuros: TEdit
+    Left = 8
+    Top = 157
+    Width = 177
+    Height = 21
+    MaxLength = 10
+    TabOrder = 5
+    OnKeyPress = EjurosKeyPress
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 271
+    Top = 0
+    Width = 121
+    Height = 33
+    Columns = 2
+    ItemIndex = 0
+    Items.Strings = (
+      'CPF'
+      'CNPJ')
+    TabOrder = 6
+    OnClick = RadioGroup1Click
+  end
+  object MaskEditCPF_CNPJ: TMaskEdit
+    Left = 271
+    Top = 34
+    Width = 121
+    Height = 21
+    CharCase = ecUpperCase
+    TabOrder = 7
+    Text = ''
+  end
+  object BitBtn1: TBitBtn
+    Left = 400
+    Top = 125
+    Width = 105
+    Height = 33
+    Caption = 'Gravar'
+    TabOrder = 8
+    OnClick = BitBtn1Click
+  end
+  object BitBtn2: TBitBtn
+    Left = 400
+    Top = 157
+    Width = 105
+    Height = 33
+    Caption = 'Sair'
+    TabOrder = 9
+    OnClick = BitBtn2Click
+  end
+end

@@ -50,3 +50,18 @@ Foi implementado a tela de abertura de Ordem de serviço, já com as veirificações
 Ordem de Serviço, e até excluzão de equipamento lançado errado, e alteração do equipamento lançado
 com verificação. E inciado a implementação de busca de Ordens de Serviço apenas para verificar se
 estava buscando as OS corretamente.
+
+Dia 14-09 Horário 23:04 até as 00:50 ---------------------------------------------------------------
+
+Fiz as correções necessarias na tela de cadastro de pessoa, na onde foi colocado um combobox para
+o usuario selecionas o tipo de cadastro caso ele queira alterar, e colocado tambem o combobox de estado,
+para ele selecionar a cidade de acordo com o respectivo estado.E tambem foi colocado o campo data de abertura
+da ordem de serviço para que o usuario possa lançar ordens de serviço com datas retroativas.
+E foi emplementado,parte das buscas do modulo gerenciamento de ordens de serviço
+
+
+Dia 15-09 Horário 23:40 até as 00:51 ---------------------------------------------------------------
+
+Fiz a parte visual da tela de lançamento dos serviços, da Ocorrencia, E comessei a implementar
+o modulo, fazendo o select da os para a tela.
+

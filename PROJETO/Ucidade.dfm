@@ -39,23 +39,12 @@ object FrmCidade: TFrmCidade
   object Ecidade: TEdit
     Left = 8
     Top = 20
-    Width = 209
+    Width = 225
     Height = 21
     CharCase = ecUpperCase
     MaxLength = 100
     TabOrder = 0
     OnKeyPress = EcidadeKeyPress
-  end
-  object Euf: TEdit
-    Left = 239
-    Top = 20
-    Width = 50
-    Height = 21
-    CharCase = ecUpperCase
-    MaxLength = 2
-    TabOrder = 1
-    OnExit = EufExit
-    OnKeyPress = EufKeyPress
   end
   object Ebusca: TEdit
     Left = 8
@@ -63,7 +52,7 @@ object FrmCidade: TFrmCidade
     Width = 281
     Height = 21
     CharCase = ecUpperCase
-    TabOrder = 2
+    TabOrder = 1
     OnKeyPress = EbuscaKeyPress
   end
   object DBGrid1: TDBGrid
@@ -72,7 +61,7 @@ object FrmCidade: TFrmCidade
     Width = 281
     Height = 153
     DataSource = DataSourcegrid
-    TabOrder = 3
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -104,10 +93,10 @@ object FrmCidade: TFrmCidade
   end
   object Panel1: TPanel
     Left = 295
-    Top = -6
+    Top = -5
     Width = 130
     Height = 255
-    TabOrder = 4
+    TabOrder = 3
     object BitBtn1: TBitBtn
       Left = 1
       Top = 92
@@ -152,6 +141,41 @@ object FrmCidade: TFrmCidade
       TabOrder = 4
       Visible = False
     end
+  end
+  object CBEstado: TComboBox
+    Left = 239
+    Top = 20
+    Width = 50
+    Height = 21
+    Style = csDropDownList
+    ItemIndex = 19
+    TabOrder = 4
+    Text = 'RO'
+    Items.Strings = (
+      'AC'
+      'AL'
+      'AP'
+      'BA'
+      'CE'
+      'DF'
+      'ES'
+      'GO'
+      'MA'
+      'MT'
+      'MS'
+      'MG'
+      'PA'
+      'PB'
+      'PR'
+      'PE'
+      'PI'
+      'RJ'
+      'RN'
+      'RO'
+      'SC'
+      'SP'
+      'SE'
+      'TO')
   end
   object IBQueryCad: TIBQuery
     Database = Form1.IBDatabase

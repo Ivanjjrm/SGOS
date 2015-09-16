@@ -8,10 +8,10 @@ uses
   Upessoa in 'Upessoa.pas' {FrmPessoa},
   Uequipamento in 'Uequipamento.pas' {FrmEquipamento},
   UServico in 'UServico.pas' {Servico},
-  UGOS in 'UGOS.pas' {Gos},
+  UGOS in 'UGOS.pas' {FrmGos},
   UBuscaPessoa in 'UBuscaPessoa.pas' {FrmBuscaPessoa},
   Uos in 'Uos.pas' {FrmNovaOs},
-  UitemOs in 'UitemOs.pas' {ItemOs},
+  UitemOs in 'UitemOs.pas' {FrmItemOs},
   Ureceber in 'Ureceber.pas' {Receber},
   UbuscasReceber in 'UbuscasReceber.pas' {BuscaReceber},
   UnovaReceber in 'UnovaReceber.pas' {NovoReceber},
@@ -36,10 +36,10 @@ begin
   Application.CreateForm(TFrmPessoa, FrmPessoa);
   Application.CreateForm(TFrmEquipamento, FrmEquipamento);
   Application.CreateForm(TServico, Servico);
-  Application.CreateForm(TGos, Gos);
+  Application.CreateForm(TFrmGos, FrmGos);
   Application.CreateForm(TFrmBuscaPessoa, FrmBuscaPessoa);
   Application.CreateForm(TFrmNovaOs, FrmNovaOs);
-  Application.CreateForm(TItemOs, ItemOs);
+  Application.CreateForm(TFrmItemOs, FrmItemOs);
   Application.CreateForm(TReceber, Receber);
   Application.CreateForm(TBuscaReceber, BuscaReceber);
   Application.CreateForm(TNovoReceber, NovoReceber);

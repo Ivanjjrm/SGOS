@@ -85,7 +85,11 @@ end;
 end;
 procedure TFrmlogin.FormShow(Sender: TObject);
 begin
-FrmSplash.ShowModal;
+if (Elogin.Text = '') then
+FrmSplash.ShowModal
+else
+Elogin.Clear;
+Esenha.Clear;
 end;
 
 end.

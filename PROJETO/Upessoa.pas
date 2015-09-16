@@ -34,7 +34,9 @@ type
     Label4: TLabel;
     IBQueryCPF_CNPJ: TIBQuery;
     DBLookupComboBoxcid: TDBLookupComboBox;
-    Etipo: TEdit;
+    CBTipo: TComboBox;
+    CBEstado: TComboBox;
+    Label7: TLabel;
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -43,6 +45,9 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure CBEstadoExit(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure CBTipoExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -206,10 +211,12 @@ Etel.Text:=(FrmbuscaPessoa.DbGrid1.Columns.Items[2].Field).AsString;
 Eendereco.Text:=(FrmbuscaPessoa.DbGrid1.Columns.Items[3].Field).AsString;
 DBLookupComboBoxcid.KeyValue:=(FrmbuscaPessoa.DbGrid1.Columns.Items[4].Field).AsInteger;
 MaskEditCPF_CNPJ.Text:=(FrmbuscaPessoa.DbGrid1.Columns.Items[6].Field).AsString;
-Etipo.Text:=(FrmbuscaPessoa.DbGrid1.Columns.Items[8].Field).AsString;
+
+if ((FrmbuscaPessoa.DbGrid1.Columns.Items[8].Field).AsString = 'FISICO') then
+CBTipo.ItemIndex:= 1
+else if ((FrmbuscaPessoa.DbGrid1.Columns.Items[8].Field).AsString = 'JURIDICO') then
+CBTipo.ItemIndex:=2;
 end;
-
-
 end;
 
 procedure TFrmPessoa.BitBtn2Click(Sender: TObject);
@@ -224,7 +231,7 @@ IBQuerycad.sql.Text:=('DELETE FROM PESSOA WHERE ID_CAD = :id');
 IBQuerycad.ParamByName('id').AsString := Eid.Text;
 IBQuerycad.ExecSQL;
 Eid.clear;Enome.clear;Eendereco.clear;Etel.clear;MaskEditCPF_CNPJ.Clear;
-DBLookupComboBoxCid.KeyValue:=0; Etipo.clear;
+DBLookupComboBoxCid.KeyValue:=0; CBTipo.ItemIndex:=0;
 end;
 end;
   except
@@ -244,7 +251,7 @@ end
 else if (Eid.Text <> '') then
 begin
 Eid.clear;Enome.clear;Eendereco.clear;Etel.clear;MaskEditCPF_CNPJ.Clear;
-DBLookupComboBoxCid.KeyValue:=0; Etipo.clear;
+DBLookupComboBoxCid.KeyValue:=0; CBTipo.ItemIndex:=0;
 close;
 end;
 
@@ -276,7 +283,7 @@ begin
      IBQuerycad.ParamByName('tel').AsString:=Etel.Text;
      IBQuerycad.ParamByName('cpfcnpj').AsString:=MaskEditCPF_CNPJ.Text;
      IBQuerycad.ParamByName('data').Asdate:=date;
-     IBQuerycad.ParamByName('tipo').AsString:=Etipo.Text;
+     IBQuerycad.ParamByName('tipo').AsString:=CBTipo.Text;
      IBQuerycad.ParamByName('idcid').AsInteger:=DBLookupComboBoxCid.KeyValue;
      IBQuerycad.ExecSQL;
      Eid.clear;Enome.clear;Eendereco.clear;Etel.clear;MaskEditCPF_CNPJ.Clear;
@@ -288,13 +295,13 @@ begin
     IBQueryCad.Close;
      IBQueryCAd.SQL.Text:='UPDATE PESSOA SET NOME=:nome,ENDERECO=:endereco,TEL=:tel,CPF_CNPJ=:cpfCnpj, '+
      'DATA_CAD=:data,TIPO_CAD=:tipo, ID_CID_FK=:idcid WHERE ID_CAD=:id';
-     IBQuerycad.ParamByName('id').Asinteger:=0;
+     IBQuerycad.ParamByName('id').Asinteger:=Strtoint(Eid.Text);
      IBQuerycad.ParamByName('nome').AsString:=Enome.Text;
      IBQuerycad.ParamByName('endereco').AsString:=Eendereco.Text;
      IBQuerycad.ParamByName('tel').AsString:=Etel.Text;
      IBQuerycad.ParamByName('cpfCnpj').AsString:=MaskEditCPF_CNPJ.Text;
      IBQuerycad.ParamByName('data').Asdate:=date;
-     IBQuerycad.ParamByName('tipo').AsString:=Etipo.Text;
+     IBQuerycad.ParamByName('tipo').AsString:=CBtipo.Text;
      IBQuerycad.ParamByName('idcid').AsInteger:=DBLookupComboBoxCid.KeyValue;
      IBQuerycad.ExecSQL;
     Eid.clear;Enome.clear;Eendereco.clear;Etel.clear;MaskEditCPF_CNPJ.Clear;
@@ -305,9 +312,26 @@ begin
 
 end;
 
+procedure TFrmPessoa.CBEstadoExit(Sender: TObject);
+begin
+IBQuerycid.active := false;
+IBQuerycid.sql.clear;
+IBQuerycid.sql.add('SELECT * FROM CIDADE WHERE UF =:estado');
+IBQuerycid.ParamByName('estado').AsString := CBEstado.Text;
+IBQuerycid.active:= true;
+end;
+
+procedure TFrmPessoa.CBTipoExit(Sender: TObject);
+begin
+if (CBTipo.ItemIndex = 0) then
+FrmPessoa.MaskEditCPF_CNPJ.EditMask:='999.999.999-99;9'
+else
+FrmPessoa.MaskEditCPF_CNPJ.EditMask:='99.999.999/9999-99;9';
+end;
+
 procedure TFrmPessoa.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-FrmPessoa.Etipo.Clear;
+FrmPessoa.CBtipo.ItemIndex:=-1;
 Eid.clear;Enome.clear;Eendereco.clear;Etel.clear;MaskEditCPF_CNPJ.Clear;
 DBLookupComboBoxCid.KeyValue:=0;
 end;
@@ -325,10 +349,19 @@ begin
 end;
 end;
 
+procedure TFrmPessoa.FormShow(Sender: TObject);
+begin
+IBQuerycid.active := false;
+IBQuerycid.sql.clear;
+IBQuerycid.sql.add('SELECT * FROM CIDADE WHERE UF =:estado');
+IBQuerycid.ParamByName('estado').AsString := CBEstado.Text;
+IBQuerycid.active:= true;
+end;
+
 procedure TFrmPessoa.MaskEditCPF_CNPJExit(Sender: TObject);
 var nome: String;
 begin
-if (Etipo.Text = 'FISICO') then // Verifica CPF
+if (CBtipo.Text = 'FISICO') then // Verifica CPF
   begin
   if not TestaCpf(LimparMascara(MaskEditCPF_CNPJ.Text)) and ( MaskEditCPF_CNPJ.Text  <> '   .   .   -  ') then
   begin
@@ -353,7 +386,7 @@ if (Etipo.Text = 'FISICO') then // Verifica CPF
     end;
   end;
 
- if (Etipo.Text = 'JURIDICO') then // Verifica CNPJ
+ if (CBtipo.Text = 'JURIDICO') then // Verifica CNPJ
  begin
   if not TestaCNPJ(LimparMascara(MaskEditCPF_CNPJ.Text)) and ( MaskEditCPF_CNPJ.Text  <>  '  .   .   /    -  ') then
   begin
@@ -384,6 +417,8 @@ end;
 procedure TFrmPessoa.SpeedButton1Click(Sender: TObject);
 begin
 FrmCidade.ShowModal;
+IBQuerycid.Active:=false;
+IBQuerycid.Active:=true;
 end;
 
 end.

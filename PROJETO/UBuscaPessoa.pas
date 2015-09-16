@@ -141,10 +141,13 @@ FrmPessoa.Etel.Text:=(DbGrid1.Columns.Items[2].Field).AsString;
 FrmPessoa.Eendereco.Text:=(DbGrid1.Columns.Items[3].Field).AsString;
 FrmPessoa.DBLookupComboBoxcid.KeyValue:=(DbGrid1.Columns.Items[4].Field).AsInteger;
 FrmPessoa.MaskEditCPF_CNPJ.Text:=(DbGrid1.Columns.Items[6].Field).AsString;
-FrmPessoa.Etipo.Text:=(DbGrid1.Columns.Items[8].Field).AsString;
 FrmPessoa.Eid.Visible:=true;
 FrmPessoa.ShowModal;
 FrmPessoa.Eid.Visible:=false;
+if ((DbGrid1.Columns.Items[8].Field).AsString = 'FISICO') then
+FrmPessoa.CBTipo.ItemIndex:=0
+else if ((DbGrid1.Columns.Items[8].Field).AsString = 'JURIDICO') then
+FrmPessoa.CBTipo.ItemIndex:=1;
 end;
 end;
 
@@ -191,7 +194,7 @@ end;
 
 procedure TFrmBuscaPessoa.PessoaFsica1Click(Sender: TObject);
 begin
-FrmPessoa.Etipo.Text:='FISICO';
+FrmPessoa.CBtipo.ItemIndex:=0;
 FrmPessoa.MaskEditCPF_CNPJ.EditMask:='999.999.999-99;9';
 FrmPessoa.ShowModal;
 end;
@@ -199,7 +202,7 @@ end;
 procedure TFrmBuscaPessoa.PessoaJurdica1Click(Sender: TObject);
 begin
 IBQueryBusca.Close;
-FrmPessoa.Etipo.Text:='JURIDICO';
+FrmPessoa.CBtipo.ItemIndex:=1;
 FrmPessoa.MaskEditCPF_CNPJ.EditMask:='99.999.999/9999-99;9';
 FrmPessoa.ShowModal;
 end;

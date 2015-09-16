@@ -5,40 +5,53 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids;
+  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids,Data.DB, IBX.IBCustomDataSet,
+  IBX.IBQuery, UGOS;
 
 type
-  TItemOs = class(TForm)
-    Edit1: TEdit;
+  TFrmItemOs = class(TForm)
+    Ecliente: TEdit;
     Label1: TLabel;
     Label2: TLabel;
-    Edit2: TEdit;
-    Memo1: TMemo;
+    MDefeito: TMemo;
     Label3: TLabel;
     DBGrid1: TDBGrid;
-    Label4: TLabel;
-    DBLookupComboBox1: TDBLookupComboBox;
+    DBLookupComboBoxServico: TDBLookupComboBox;
     Label5: TLabel;
-    Memo2: TMemo;
+    MDescServ: TMemo;
     Label6: TLabel;
-    Edit3: TEdit;
+    EsubTotal: TEdit;
     Label7: TLabel;
-    Edit4: TEdit;
+    Edesc: TEdit;
     Label8: TLabel;
-    Edit5: TEdit;
+    Etotal: TEdit;
     Label9: TLabel;
     Panel1: TPanel;
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
-    Edit6: TEdit;
+    Edata: TEdit;
     Label10: TLabel;
     BitBtn4: TBitBtn;
     BitBtn5: TBitBtn;
     BitBtn6: TBitBtn;
-    Edit7: TEdit;
+    Evalor: TEdit;
     Label11: TLabel;
+    Bevel1: TBevel;
+    Eidenfic: TEdit;
+    DBLookupComboBoxEquipamento: TDBLookupComboBox;
+    Label12: TLabel;
+    Bevel2: TBevel;
+    Eidos: TEdit;
+    IBQueryEquip: TIBQuery;
+    IBQueryServ: TIBQuery;
+    DataSourceEquip: TDataSource;
+    DataSourceServ: TDataSource;
+    Eiditem: TEdit;
+    IBQueryGrid: TIBQuery;
+    DataSourceGrid: TDataSource;
     procedure BitBtn5Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,15 +59,23 @@ type
   end;
 
 var
-  ItemOs: TItemOs;
+  FrmItemOs: TFrmItemOs;
 
 implementation
 
 {$R *.dfm}
 
-procedure TItemOs.BitBtn5Click(Sender: TObject);
+procedure TFrmItemOs.BitBtn5Click(Sender: TObject);
 begin
 Close;
+end;
+
+procedure TFrmItemOs.FormShow(Sender: TObject);
+begin
+IBQuerygrid.sql.clear;
+        IBQuerygrid.sql.add('SELECT * FROM ITEM_OS WHERE ID_OS_FK =:id');
+        IBQuerygrid.ParamByName('id').AsInteger := Strtoint(Eidos.text);
+        IBQuerygrid.active:= true;
 end;
 
 end.

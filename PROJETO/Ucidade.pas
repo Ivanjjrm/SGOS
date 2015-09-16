@@ -10,7 +10,6 @@ uses
 type
   TFrmCidade = class(TForm)
     Ecidade: TEdit;
-    Euf: TEdit;
     Ebusca: TEdit;
     DBGrid1: TDBGrid;
     Label1: TLabel;
@@ -28,6 +27,7 @@ type
     IBQuerygridID_CID: TIntegerField;
     IBQuerygridNOME_CID: TIBStringField;
     IBQuerygridUF: TIBStringField;
+    CBEstado: TComboBox;
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure EbuscaKeyPress(Sender: TObject; var Key: Char);
@@ -53,10 +53,7 @@ implementation
 uses Uprincipal;
 
 procedure TFrmCidade.BitBtn1Click(Sender: TObject);
-Var
-contuf : integer;
 begin
- contuf:=Length(Euf.Text);
  Ecidade.Text:=Trim(Ecidade.Text);
   if (Ecidade.Text = '') then
     begin
@@ -64,36 +61,30 @@ begin
      Ecidade.SetFocus;
     end;
 
-  if (contuf < 2) then
-    begin
-    Showmessage('Campo Estado está Invalido');
-    Euf.SetFocus;
-    end;
-
-  if (Eid.Text = '') and (Ecidade.Text <> '') and (Euf.Text <> '') then
+  if (Eid.Text = '') and (Ecidade.Text <> '') then
   begin
    IBQueryCad.Close;
    IBQueryCAd.SQL.Text:='INSERT INTO CIDADE (ID_CID,NOME_CID,UF) VALUES (:id,:cidade,:uf)';
    IBQuerycad.ParamByName('id').Asinteger:=0;
    IBQuerycad.ParamByName('cidade').AsString:=Ecidade.Text;
-   IBQuerycad.ParamByName('uf').AsString:=Euf.Text;
+   IBQuerycad.ParamByName('uf').AsString:=CbEstado.Text;
    IBQuerycad.ExecSQL;
    IBQuerygrid.active:= FALSE;
    IBQuerygrid.active:= true;
-   Eid.Clear;Ecidade.Clear;Euf.Clear;
+   Eid.Clear;Ecidade.Clear;CBEstado.ItemIndex:=19;
   end;
 
-  if(Eid.Text <> '') and (Ecidade.Text <> '') and (Euf.Text <> '') then
+  if(Eid.Text <> '') and (Ecidade.Text <> '') then
     begin
      IBQueryCad.Close;
      IBQueryCad.SQL.Text:='UPDATE CIDADE SET NOME_CID=:cidade, UF=:uf WHERE ID_CID = :id';
      IBQuerycad.ParamByName('id').Asinteger:=Strtoint(Eid.Text);
      IBQuerycad.ParamByName('cidade').AsString:=Ecidade.Text;
-     IBQuerycad.ParamByName('uf').AsString:=Euf.Text;
+     IBQuerycad.ParamByName('uf').AsString:=cbEstado.Text;
      IBQuerycad.ExecSQL;
      IBQuerygrid.active:= FALSE;
      IBQuerygrid.active:= true;
-     Eid.Clear;Ecidade.Clear;Euf.Clear;
+     Eid.Clear;Ecidade.Clear;CBEstado.ItemIndex:=19;
     end;
 
 end;
@@ -101,7 +92,7 @@ end;
 
 procedure TFrmCidade.BitBtn2Click(Sender: TObject);
 begin
-Eid.Clear;Ecidade.Clear;Euf.Clear;
+Eid.Clear;Ecidade.Clear;
 end;
 
 procedure TFrmCidade.BitBtn3Click(Sender: TObject);
@@ -117,7 +108,7 @@ try
         IBQuerycad.ExecSQL;
         IBQuerygrid.active:= FALSE;
         IBQuerygrid.active:= true;
-        Eid.Clear;Ecidade.Clear;Euf.Clear;Ebusca.Clear;IBQueryGrid.close; Ebusca.setfocus;
+        Eid.Clear;Ecidade.Clear;CBEstado.ItemIndex:=19;Ebusca.Clear;IBQueryGrid.close; Ebusca.setfocus;
         end;
     end;
       except
@@ -138,7 +129,55 @@ begin
     begin
     Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
     Ecidade.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
-    Euf.Text:=(DbGrid1.Columns.Items[2].Field).AsString;
+
+    if ((DbGrid1.Columns.Items[2].Field).AsString = 'AC')then
+    CBEstado.ItemIndex:=0
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'AL')then
+    CBEstado.ItemIndex:=1
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'AP')then
+    CBEstado.ItemIndex:=2
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'BA')then
+    CBEstado.ItemIndex:=3
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'CE')then
+    CBEstado.ItemIndex:=4
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'DF')then
+    CBEstado.ItemIndex:=5
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'ES')then
+    CBEstado.ItemIndex:=6
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'GO')then
+    CBEstado.ItemIndex:=7
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'MA')then
+    CBEstado.ItemIndex:=8
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'MT')then
+    CBEstado.ItemIndex:=9
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'MS')then
+    CBEstado.ItemIndex:=10
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'MG')then
+    CBEstado.ItemIndex:=11
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PA')then
+    CBEstado.ItemIndex:=12
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PB')then
+    CBEstado.ItemIndex:=13
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PR')then
+    CBEstado.ItemIndex:=14
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PE')then
+    CBEstado.ItemIndex:=15
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PI')then
+    CBEstado.ItemIndex:=16
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'RJ')then
+    CBEstado.ItemIndex:=17
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'RN')then
+    CBEstado.ItemIndex:=18
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'RO')then
+    CBEstado.ItemIndex:=19
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'SC')then
+    CBEstado.ItemIndex:=20
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'SP')then
+    CBEstado.ItemIndex:=21
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'SE')then
+    CBEstado.ItemIndex:=22
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'TO')then
+    CBEstado.ItemIndex:=23;
     Ebusca.Clear;
     end;
 end;

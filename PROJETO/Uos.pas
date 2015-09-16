@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids,
   Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Buttons, Uprincipal, Data.DB,
-  IBX.IBCustomDataSet, IBX.IBQuery, Uequipamento, Vcl.Mask;
+  IBX.IBCustomDataSet, IBX.IBQuery, Uequipamento, Vcl.Mask, Vcl.ComCtrls;
 
 type
   TFrmNovaOs = class(TForm)
@@ -42,6 +42,8 @@ type
     DataSourcegrid: TDataSource;
     Eiditem: TEdit;
     BitBtn7: TBitBtn;
+    DateTimePicker1: TDateTimePicker;
+    ad: TLabel;
     procedure BitBtn6Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -98,7 +100,7 @@ begin
 IBQueryCad.Close;
    IBQuerycad.SQL.Text:='INSERT INTO OS (ID_OS, DATA_ABERTA,STATUS,ID_CAD_FK) VALUES (:id,:data,:status,:id_cad)';
    IBQuerycad.ParamByName('id').Asinteger:=0;
-   IBQuerycad.ParamByName('data').AsDate:=date;
+   IBQuerycad.ParamByName('data').AsDate:=DateTimePicker1.Date;
    IBQuerycad.ParamByName('status').AsString:='ABERTA';
    IBQuerycad.ParamByName('id_cad').AsInteger:=Strtoint(Eidpessoa.Text);
    IBQuerycad.ExecSQL;
@@ -150,6 +152,12 @@ end;
 
 procedure TFrmNovaOs.BitBtn4Click(Sender: TObject);
 begin
+IBQueryCad.Close;
+     IBQueryCad.SQL.Text:='UPDATE OS  SET DATA_ABERTA WHERE ID_OS =:id';
+     IBQuerycad.ParamByName('id').Asinteger:=Strtoint(DBEidOs.Text);
+     IBQuerycad.ParamByName('data').AsDate:=DateTimePicker1.Date;
+     IBQuerycad.ExecSQL;
+
 DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;
 BitBtn1.Enabled:=true;
 close;
@@ -179,6 +187,7 @@ procedure TFrmNovaOs.BitBtn5Click(Sender: TObject);
         if (DBEidOs.Text = '') then
         begin
         DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;
+        DateTimePicker1.Date;
         DBEidOs.Clear;Enome.Clear;Eidpessoa.Clear;
         IBQuerygrid.Active:=false;
         end;

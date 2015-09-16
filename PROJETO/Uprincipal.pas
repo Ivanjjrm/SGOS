@@ -75,7 +75,7 @@ end;
 
 procedure TForm1.Equipamento1Click(Sender: TObject);
 begin
-FrmPessoa.Etipo.text:='FISICO';
+FrmPessoa.CBtipo.ItemIndex:=0;
 FrmPessoa.MaskEditCPF_CNPJ.EditMask:='999.999.999-99;9';
 FrmPessoa.ShowModal;
 end;
@@ -97,7 +97,7 @@ end;
 
 procedure TForm1.PessoaJuridica2Click(Sender: TObject);
 begin
-FrmPessoa.Etipo.Text:='JURIDICO';
+FrmPessoa.CBtipo.ItemIndex:=1;
 FrmPessoa.MaskEditCPF_CNPJ.EditMask:='99.999.999/9999-99;9';
 FrmPessoa.ShowModal;
 end;
@@ -135,7 +135,7 @@ end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);
 begin
-Gos.ShowModal;
+FrmGos.ShowModal;
 end;
 
 procedure TForm1.SpeedButton2Click(Sender: TObject);

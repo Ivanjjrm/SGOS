@@ -1,0 +1,163 @@
+object FrmNovoPagar: TFrmNovoPagar
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Nova Conta a pagar'
+  ClientHeight = 159
+  ClientWidth = 459
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 128
+    Top = 51
+    Width = 74
+    Height = 13
+    Caption = 'Data da Conta:'
+  end
+  object Label2: TLabel
+    Left = 239
+    Top = 52
+    Width = 85
+    Height = 13
+    Caption = 'Data Vencimento:'
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 51
+    Width = 28
+    Height = 13
+    Caption = 'Valor:'
+  end
+  object Label4: TLabel
+    Left = 8
+    Top = 8
+    Width = 59
+    Height = 13
+    Caption = 'Fornecedor:'
+  end
+  object Label5: TLabel
+    Left = 8
+    Top = 97
+    Width = 97
+    Height = 13
+    Caption = 'Descri'#231#227'o da Conta:'
+  end
+  object Enome: TEdit
+    Left = 8
+    Top = 24
+    Width = 265
+    Height = 21
+    Enabled = False
+    TabOrder = 0
+  end
+  object BitBtn1: TBitBtn
+    Left = 271
+    Top = 21
+    Width = 50
+    Height = 25
+    Caption = 'Buscar'
+    TabOrder = 1
+    OnClick = BitBtn1Click
+  end
+  object DateTimePicker1: TDateTimePicker
+    Left = 128
+    Top = 70
+    Width = 89
+    Height = 21
+    Date = 42116.621233518520000000
+    Time = 42116.621233518520000000
+    TabOrder = 2
+  end
+  object DateTimePicker2: TDateTimePicker
+    Left = 239
+    Top = 70
+    Width = 89
+    Height = 21
+    Date = 42116.621233518520000000
+    Time = 42116.621233518520000000
+    TabOrder = 3
+  end
+  object Evalor: TEdit
+    Left = 8
+    Top = 70
+    Width = 81
+    Height = 21
+    Alignment = taRightJustify
+    TabOrder = 4
+    Text = '0,00'
+    OnKeyPress = EvalorKeyPress
+  end
+  object Mref: TMemo
+    Left = 8
+    Top = 113
+    Width = 320
+    Height = 40
+    TabOrder = 5
+  end
+  object Panel1: TPanel
+    Left = 335
+    Top = -6
+    Width = 185
+    Height = 174
+    TabOrder = 6
+    object BitBtn2: TBitBtn
+      Left = 0
+      Top = 122
+      Width = 122
+      Height = 37
+      Caption = 'Sair'
+      TabOrder = 0
+      OnClick = BitBtn2Click
+    end
+    object BitBtn3: TBitBtn
+      Left = 1
+      Top = 49
+      Width = 121
+      Height = 37
+      Caption = 'Salvar'
+      TabOrder = 1
+      OnClick = BitBtn3Click
+    end
+    object BitBtn4: TBitBtn
+      Left = 1
+      Top = 85
+      Width = 121
+      Height = 38
+      Caption = 'Cancelar'
+      TabOrder = 2
+      OnClick = BitBtn4Click
+    end
+  end
+  object Eid: TEdit
+    Left = 81
+    Top = -3
+    Width = 24
+    Height = 21
+    TabOrder = 7
+    Visible = False
+  end
+  object Eidcont: TEdit
+    Left = 359
+    Top = 8
+    Width = 34
+    Height = 21
+    TabOrder = 8
+  end
+  object IBQueryCadPag: TIBQuery
+    Database = Form1.IBDatabase
+    Transaction = Form1.IBTransaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    Left = 168
+    Top = 65528
+  end
+end

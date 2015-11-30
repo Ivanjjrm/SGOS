@@ -95,7 +95,7 @@ object BuscaReceber: TBuscaReceber
   end
   object DBGrid1: TDBGrid
     Left = 8
-    Top = 72
+    Top = 69
     Width = 642
     Height = 393
     TabOrder = 5

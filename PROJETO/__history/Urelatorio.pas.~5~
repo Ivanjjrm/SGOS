@@ -1,0 +1,38 @@
+unit Urelatorio;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, ppViewr, Vcl.ToolWin,
+  Vcl.ComCtrls, Vcl.Buttons, Vcl.StdCtrls, Vcl.Mask, ppComm, ppEndUsr;
+
+type
+  TFrmRelatorio = class(TForm)
+    ppViewer1: TppViewer;
+    Panel1: TPanel;
+    mskPreviewPercentage: TMaskEdit;
+    spbPreviewFirst: TSpeedButton;
+    spbPreviewPrior: TSpeedButton;
+    mskPreviewPage: TMaskEdit;
+    spbPreviewNext: TSpeedButton;
+    spbPreviewLast: TSpeedButton;
+    spbPreview100Percent: TSpeedButton;
+    spbPreviewWidth: TSpeedButton;
+    spbPreviewWhole: TSpeedButton;
+    ppDesigner1: TppDesigner;
+    SpeedButton1: TSpeedButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmRelatorio: TFrmRelatorio;
+
+implementation
+
+{$R *.dfm}
+
+end.

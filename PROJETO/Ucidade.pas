@@ -28,6 +28,7 @@ type
     IBQuerygridNOME_CID: TIBStringField;
     IBQuerygridUF: TIBStringField;
     CBEstado: TComboBox;
+    BitBtn5: TBitBtn;
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure EbuscaKeyPress(Sender: TObject; var Key: Char);
@@ -37,6 +38,10 @@ type
     procedure EcidadeKeyPress(Sender: TObject; var Key: Char);
     procedure EufKeyPress(Sender: TObject; var Key: Char);
     procedure EufExit(Sender: TObject);
+    procedure DBGrid1KeyPress(Sender: TObject; var Key: Char);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure BitBtn5KeyPress(Sender: TObject; var Key: Char);
+    procedure CBEstadoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -123,6 +128,84 @@ begin
 close;
 end;
 
+procedure TFrmCidade.BitBtn5Click(Sender: TObject);
+begin
+ if (IBQuerygrid.RecordCount > 0) then
+    begin
+    Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+    Ecidade.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+
+    if ((DbGrid1.Columns.Items[2].Field).AsString = 'AC')then
+    CBEstado.ItemIndex:=0
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'AL')then
+    CBEstado.ItemIndex:=1
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'AP')then
+    CBEstado.ItemIndex:=2
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'BA')then
+    CBEstado.ItemIndex:=3
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'CE')then
+    CBEstado.ItemIndex:=4
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'DF')then
+    CBEstado.ItemIndex:=5
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'ES')then
+    CBEstado.ItemIndex:=6
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'GO')then
+    CBEstado.ItemIndex:=7
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'MA')then
+    CBEstado.ItemIndex:=8
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'MT')then
+    CBEstado.ItemIndex:=9
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'MS')then
+    CBEstado.ItemIndex:=10
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'MG')then
+    CBEstado.ItemIndex:=11
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PA')then
+    CBEstado.ItemIndex:=12
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PB')then
+    CBEstado.ItemIndex:=13
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PR')then
+    CBEstado.ItemIndex:=14
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PE')then
+    CBEstado.ItemIndex:=15
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'PI')then
+    CBEstado.ItemIndex:=16
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'RJ')then
+    CBEstado.ItemIndex:=17
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'RN')then
+    CBEstado.ItemIndex:=18
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'RO')then
+    CBEstado.ItemIndex:=19
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'SC')then
+    CBEstado.ItemIndex:=20
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'SP')then
+    CBEstado.ItemIndex:=21
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'SE')then
+    CBEstado.ItemIndex:=22
+    else if ((DbGrid1.Columns.Items[2].Field).AsString = 'TO')then
+    CBEstado.ItemIndex:=23;
+    Ebusca.Clear;
+    end;
+
+end;
+
+procedure TFrmCidade.BitBtn5KeyPress(Sender: TObject; var Key: Char);
+begin
+If key = #13 then
+   Begin
+    Key:= #0;
+    Ecidade.SetFocus;
+end;
+end;
+
+procedure TFrmCidade.CBEstadoKeyPress(Sender: TObject; var Key: Char);
+begin
+If key = #13 then
+   Begin
+    Key:= #0;
+    BitBtn1.SetFocus;
+   End;
+end;
+
 procedure TFrmCidade.DBGrid1DblClick(Sender: TObject);
 begin
   if (IBQuerygrid.RecordCount > 0) then
@@ -182,6 +265,15 @@ begin
     end;
 end;
 
+procedure TFrmCidade.DBGrid1KeyPress(Sender: TObject; var Key: Char);
+begin
+If key = #13 then
+   Begin
+    Key:= #0;
+    BitBtn5.SetFocus;
+end;
+end;
+
 procedure TFrmCidade.EbuscaKeyPress(Sender: TObject; var Key: Char);
 begin
 IBQuerygrid.active := false;
@@ -189,6 +281,12 @@ IBQuerygrid.sql.clear;
 IBQuerygrid.sql.add('SELECT * FROM CIDADE WHERE NOME_CID LIKE :cidade');
 IBQuerygrid.ParamByName('cidade').AsString := Ebusca.Text + '%';
 IBQuerygrid.active:= true;
+
+  If key = #13 then
+   Begin
+    Key:= #0;
+    DBGrid1.SetFocus;
+end;
 end;
 
 procedure TFrmCidade.EcidadeKeyPress(Sender: TObject; var Key: Char);
@@ -196,7 +294,7 @@ begin
   If key = #13 then
    Begin
     Key:= #0;
-    Perform(Wm_NextDlgCtl,0,0);
+    CBEstado.SetFocus;
 end;
 end;
 

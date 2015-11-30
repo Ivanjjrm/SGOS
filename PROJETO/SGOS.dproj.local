@@ -2,22 +2,34 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2015/08/19 00:50:21.000.490,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
-    <Transaction>2015/08/19 00:50:33.000.534,C:\SGOS\PROJETO\Unit2.dfm=C:\SGOS\PROJETO\Ulogin.dfm</Transaction>
-    <Transaction>2015/08/19 00:50:33.000.534,C:\SGOS\PROJETO\Unit2.pas=C:\SGOS\PROJETO\Ulogin.pas</Transaction>
+    <Transaction>2015/08/19 00:50:33.000.534,C:\SGOS\PROJETO\Ulogin.pas=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/08/19 00:50:33.000.534,C:\SGOS\PROJETO\Ulogin.dfm=C:\SGOS\PROJETO\Unit2.dfm</Transaction>
     <Transaction>2015/08/19 01:09:08.000.419,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
-    <Transaction>2015/08/19 01:09:20.000.005,C:\SGOS\PROJETO\Unit2.pas=C:\SGOS\PROJETO\Usplash.pas</Transaction>
-    <Transaction>2015/08/19 01:09:20.000.005,C:\SGOS\PROJETO\Unit2.dfm=C:\SGOS\PROJETO\Usplash.dfm</Transaction>
-    <Transaction>2015/08/22 16:22:31.000.214,C:\SGOS\PROJETO\Uequipamento.pas=C:\SGOS\PROJETO\Uproduto.pas</Transaction>
-    <Transaction>2015/08/22 16:22:31.000.214,C:\SGOS\PROJETO\Uequipamento.dfm=C:\SGOS\PROJETO\Uproduto.dfm</Transaction>
+    <Transaction>2015/08/19 01:09:20.000.005,C:\SGOS\PROJETO\Usplash.pas=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/08/19 01:09:20.000.005,C:\SGOS\PROJETO\Usplash.dfm=C:\SGOS\PROJETO\Unit2.dfm</Transaction>
+    <Transaction>2015/08/22 16:22:31.000.214,C:\SGOS\PROJETO\Uproduto.pas=C:\SGOS\PROJETO\Uequipamento.pas</Transaction>
+    <Transaction>2015/08/22 16:22:31.000.214,C:\SGOS\PROJETO\Uproduto.dfm=C:\SGOS\PROJETO\Uequipamento.dfm</Transaction>
     <Transaction>2015/08/23 10:47:20.000.850,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
-    <Transaction>2015/08/23 10:47:34.000.601,C:\SGOS\PROJETO\UConfiguracao.dfm=C:\SGOS\PROJETO\Unit2.dfm</Transaction>
-    <Transaction>2015/08/23 10:47:34.000.601,C:\SGOS\PROJETO\UConfiguracao.pas=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/08/23 10:47:34.000.601,C:\SGOS\PROJETO\Unit2.pas=C:\SGOS\PROJETO\UConfiguracao.pas</Transaction>
+    <Transaction>2015/08/23 10:47:34.000.601,C:\SGOS\PROJETO\Unit2.dfm=C:\SGOS\PROJETO\UConfiguracao.dfm</Transaction>
+    <Transaction>2015/09/28 22:53:58.000.244,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/09/28 23:16:16.000.228,C:\SGOS\PROJETO\Unit2.dfm=C:\SGOS\PROJETO\UfechamentoOs.dfm</Transaction>
+    <Transaction>2015/09/28 23:16:16.000.227,C:\SGOS\PROJETO\Unit2.pas=C:\SGOS\PROJETO\UfechamentoOs.pas</Transaction>
+    <Transaction>2015/09/30 02:08:41.000.622,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/09/30 02:10:11.000.711,C:\SGOS\PROJETO\Unit2.pas=C:\SGOS\PROJETO\Urelatorio.pas</Transaction>
+    <Transaction>2015/09/30 02:10:11.000.711,C:\SGOS\PROJETO\Unit2.dfm=C:\SGOS\PROJETO\Urelatorio.dfm</Transaction>
+    <Transaction>2015/10/01 23:57:30.000.581,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/10/02 00:01:34.000.875,C:\SGOS\PROJETO\Unit2.pas=C:\SGOS\PROJETO\Upagamento.pas</Transaction>
+    <Transaction>2015/10/02 00:01:34.000.875,C:\SGOS\PROJETO\Unit2.dfm=C:\SGOS\PROJETO\Upagamento.dfm</Transaction>
+    <Transaction>2015/10/04 09:13:39.000.118,=C:\SGOS\PROJETO\Unit2.pas</Transaction>
+    <Transaction>2015/10/04 09:13:52.000.907,C:\SGOS\PROJETO\Unit2.pas=C:\SGOS\PROJETO\UrecPag.pas</Transaction>
+    <Transaction>2015/10/04 09:13:52.000.907,C:\SGOS\PROJETO\Unit2.dfm=C:\SGOS\PROJETO\UrecPag.dfm</Transaction>
+    <Transaction>2015/10/13 22:16:29.000.465,C:\SGOS\PROJETO\UbuscasReceber.pas=</Transaction>
+    <Transaction>2015/10/21 23:50:13.000.471,C:\SGOS\PROJETO\Urelatorio.pas=</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="UBuscaPessoa.pas"/>
     <File Path="UBuscaPessoa.dfm"/>
-    <File Path="UbuscasReceber.pas"/>
-    <File Path="UbuscasReceber.dfm"/>
     <File Path="Ucaixa.pas"/>
     <File Path="Ucaixa.dfm"/>
     <File Path="Ucidade.pas"/>
@@ -52,5 +64,11 @@
     <File Path="Uusuario.dfm"/>
     <File Path="UConfiguracao.pas"/>
     <File Path="UConfiguracao.dfm"/>
+    <File Path="UfechamentoOs.pas"/>
+    <File Path="UfechamentoOs.dfm"/>
+    <File Path="Upagamento.pas"/>
+    <File Path="Upagamento.dfm"/>
+    <File Path="UrecPag.pas"/>
+    <File Path="UrecPag.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

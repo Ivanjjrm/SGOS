@@ -1,0 +1,71 @@
+object FrmSplash: TFrmSplash
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'FrmSplash'
+  ClientHeight = 274
+  ClientWidth = 473
+  Color = clGradientActiveCaption
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Bevel1: TBevel
+    Left = 0
+    Top = 240
+    Width = 473
+    Height = 34
+  end
+  object Label1: TLabel
+    Left = 179
+    Top = 241
+    Width = 123
+    Height = 13
+    Caption = 'Carregando Modulos . . . '
+  end
+  object Label2: TLabel
+    Left = 32
+    Top = 8
+    Width = 400
+    Height = 19
+    Caption = 'Sistema de Ger'#234'nciamento de Ordens de Servi'#231'o '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Layout = tlCenter
+  end
+  object Label3: TLabel
+    Left = 160
+    Top = 120
+    Width = 155
+    Height = 19
+    Caption = 'Ambiente de Teste'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object ProgressBar1: TProgressBar
+    Left = 177
+    Top = 254
+    Width = 294
+    Height = 18
+    TabOrder = 0
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 432
+    Top = 200
+  end
+end

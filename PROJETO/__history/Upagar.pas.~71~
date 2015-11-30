@@ -1,0 +1,434 @@
+unit Upagar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, Data.DB, IBX.IBCustomDataSet,
+  IBX.IBQuery, Uprincipal, UrecPag, UBuscaPessoa, ppComm, ppRelatv, ppDB,
+  ppDBPipe, ppCtrls, ppPrnabl, ppClass, ppBands, ppCache, ppDesignLayer,
+  ppParameter, ppProd, ppReport, ppVar;
+
+type
+  TFrmPagar = class(TForm)
+    Enome: TEdit;
+    Label1: TLabel;
+    BitBtn1: TBitBtn;
+    DateTimePicker1: TDateTimePicker;
+    DateTimePicker2: TDateTimePicker;
+    Label2: TLabel;
+    Label3: TLabel;
+    DBGrid1: TDBGrid;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    Panel1: TPanel;
+    BitBtn4: TBitBtn;
+    BitBtn5: TBitBtn;
+    BitBtn6: TBitBtn;
+    BitBtn7: TBitBtn;
+    BitBtn8: TBitBtn;
+    Eid: TEdit;
+    IBQuerygrid: TIBQuery;
+    DataSourceGrid: TDataSource;
+    RadioGroup1: TRadioGroup;
+    RadioGroup2: TRadioGroup;
+    BitBtn9: TBitBtn;
+    IBQueryExCont: TIBQuery;
+    ppDBPipelineRelPag: TppDBPipeline;
+    ppReportRelpag: TppReport;
+    ppParameterList1: TppParameterList;
+    ppDesignLayers1: TppDesignLayers;
+    ppDesignLayer1: TppDesignLayer;
+    ppHeaderBand1: TppHeaderBand;
+    ppDetailBand1: TppDetailBand;
+    ppShape1: TppShape;
+    ppDBText1: TppDBText;
+    ppDBText2: TppDBText;
+    ppDBText3: TppDBText;
+    ppLabel1: TppLabel;
+    ppLabel2: TppLabel;
+    ppLabel3: TppLabel;
+    ppLabel4: TppLabel;
+    ppLabel5: TppLabel;
+    ppLabel6: TppLabel;
+    ppLabel7: TppLabel;
+    ppLabel8: TppLabel;
+    ppLabelDesc: TppLabel;
+    ppLine1: TppLine;
+    ppDBText4: TppDBText;
+    ppDBText5: TppDBText;
+    ppDBText6: TppDBText;
+    ppDBText7: TppDBText;
+    ppDBText8: TppDBText;
+    ppDBText9: TppDBText;
+    IBQuerygridID_CONT_PAG: TIntegerField;
+    IBQuerygridNOME: TIBStringField;
+    IBQuerygridENDERECO: TIBStringField;
+    IBQuerygridTEL: TIBStringField;
+    IBQuerygridCPF_CNPJ: TIBStringField;
+    IBQuerygridDESC_CONT: TIBStringField;
+    IBQuerygridDATA_CONT: TDateField;
+    IBQuerygridDATA_VENC: TDateField;
+    IBQuerygridDATA_PAG: TDateField;
+    IBQuerygridJUROS: TIBBCDField;
+    IBQuerygridVALOR_TOTAL: TIBBCDField;
+    IBQuerygridVALOR_PAGO: TIBBCDField;
+    IBQuerygridSTATUS: TIBStringField;
+    IBQuerygridID_CAD_FK: TIntegerField;
+    ppDBText10: TppDBText;
+    ppLabel9: TppLabel;
+    ppDBText11: TppDBText;
+    ppDBText12: TppDBText;
+    ppLabel10: TppLabel;
+    ppLabel11: TppLabel;
+    ppSummaryBand1: TppSummaryBand;
+    ppDBCalc1: TppDBCalc;
+    ppDBCalc2: TppDBCalc;
+    ppDBCalc3: TppDBCalc;
+    ppShape2: TppShape;
+    ppLabel12: TppLabel;
+    ppLabel13: TppLabel;
+    ppLine2: TppLine;
+    ppLine3: TppLine;
+    ppLabel14: TppLabel;
+    ppSystemVariable1: TppSystemVariable;
+    ppLine4: TppLine;
+    ppReportRelpag2: TppReport;
+    ppParameterList2: TppParameterList;
+    ppDesignLayers2: TppDesignLayers;
+    ppDesignLayer2: TppDesignLayer;
+    ppHeaderBand2: TppHeaderBand;
+    ppDetailBand2: TppDetailBand;
+    ppShape3: TppShape;
+    ppDBText13: TppDBText;
+    ppDBText14: TppDBText;
+    ppDBText15: TppDBText;
+    ppLabel15: TppLabel;
+    ppLabel16: TppLabel;
+    ppLabel17: TppLabel;
+    ppLabel18: TppLabel;
+    ppLabel19: TppLabel;
+    ppLabel20: TppLabel;
+    ppLabel22: TppLabel;
+    ppLabel23: TppLabel;
+    ppLine5: TppLine;
+    ppLabel26: TppLabel;
+    ppDBText16: TppDBText;
+    ppDBText17: TppDBText;
+    ppDBText18: TppDBText;
+    ppDBText19: TppDBText;
+    ppDBText20: TppDBText;
+    ppDBText22: TppDBText;
+    ppDBCalc4: TppDBCalc;
+    ppLabel21: TppLabel;
+    ppSummaryBand2: TppSummaryBand;
+    ppShape4: TppShape;
+    ppSystemVariable2: TppSystemVariable;
+    procedure BitBtn5Click(Sender: TObject);
+    procedure BitBtn7Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn9Click(Sender: TObject);
+    procedure BitBtn6Click(Sender: TObject);
+    procedure BitBtn8Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmPagar: TFrmPagar;
+
+implementation
+
+{$R *.dfm}
+
+uses UnovoPagar;
+
+procedure TFrmPagar.BitBtn1Click(Sender: TObject);
+begin
+FrmBuscaPessoa.ShowModal;
+end;
+
+procedure TFrmPagar.BitBtn2Click(Sender: TObject);
+begin
+if (RadioGroup1.ItemIndex = 0 ) then
+  Begin
+    if (RadioGroup2.ItemIndex = 0) then
+      begin
+        if (Eid.Text = '') then
+          begin
+            IBQueryGrid.active := false;
+            IBQueryGrid.sql.clear;
+            IBQueryGrid.sql.add('SELECT C.ID_CONT_PAG,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,'+
+            'C.DESC_CONT,C.DATA_CONT,C.DATA_VENC,C.DATA_PAG,'+
+            'C.JUROS,C.VALOR_TOTAL,C.VALOR_PAGO,C.STATUS,C.ID_CAD_FK '+
+            'FROM CONTA_PAG AS C INNER JOIN PESSOA AS P ON '+
+            'C.ID_CAD_FK = P.ID_CAD WHERE (C.DATA_PAG BETWEEN :dtincio AND :dtfim) '+
+            'AND C.STATUS =:status;');
+            IBQuerygrid.ParamByName('dtincio').AsDate := DateTimePicker1.Date;
+            IBQuerygrid.ParamByName('dtfim').AsDate := DateTimePicker2.Date;
+            IBQueryGrid.ParamByName('status').AsString := 'FECHADA';
+            IBQueryGrid.active:= true;
+          end
+       else if (Eid.Text <> '') then
+          begin
+            IBQueryGrid.active := false;
+            IBQueryGrid.sql.clear;
+            IBQueryGrid.sql.add('SELECT C.ID_CONT_PAG,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,'+
+            'C.DESC_CONT,C.DATA_CONT,C.DATA_VENC,C.DATA_PAG,'+
+            'C.JUROS,C.VALOR_TOTAL,C.VALOR_PAGO,C.STATUS,C.ID_CAD_FK '+
+            'FROM CONTA_PAG AS C INNER JOIN PESSOA AS P ON '+
+            'C.ID_CAD_FK = P.ID_CAD WHERE (C.DATA_PAG BETWEEN :dtincio AND :dtfim) '+
+            'AND C.STATUS =:status AND C.ID_CAD_FK =:idcad');
+            IBQuerygrid.ParamByName('dtincio').AsDate := DateTimePicker1.Date;
+            IBQuerygrid.ParamByName('dtfim').AsDate := DateTimePicker2.Date;
+            IBQueryGrid.ParamByName('status').AsString := 'FECHADA';
+            IBQuerygrid.ParamByName('idcad').Asinteger:= Strtoint(Eid.Text);
+            IBQueryGrid.active:= true;
+          end;
+      end
+   else if (RadioGroup2.ItemIndex = 1) then
+    begin
+    if (Eid.Text = '') then
+          begin
+            IBQueryGrid.active := false;
+            IBQueryGrid.sql.clear;
+            IBQueryGrid.sql.add('SELECT C.ID_CONT_PAG,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,'+
+            'C.DESC_CONT,C.DATA_CONT,C.DATA_VENC,C.DATA_PAG,'+
+            'C.JUROS,C.VALOR_TOTAL,C.VALOR_PAGO,C.STATUS,C.ID_CAD_FK '+
+            'FROM CONTA_PAG AS C INNER JOIN PESSOA AS P ON '+
+            'C.ID_CAD_FK = P.ID_CAD WHERE (C.DATA_VENC BETWEEN :dtincio AND :dtfim) '+
+            'AND C.STATUS =:status;');
+            IBQuerygrid.ParamByName('dtincio').AsDate := DateTimePicker1.Date;
+            IBQuerygrid.ParamByName('dtfim').AsDate := DateTimePicker2.Date;
+            IBQueryGrid.ParamByName('status').AsString := 'FECHADA';
+            IBQueryGrid.active:= true;
+          end
+       else if (Eid.Text <> '') then
+          begin
+            IBQueryGrid.active := false;
+            IBQueryGrid.sql.clear;
+            IBQueryGrid.sql.add('SELECT C.ID_CONT_PAG,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,'+
+            'C.DESC_CONT,C.DATA_CONT,C.DATA_VENC,C.DATA_PAG,'+
+            'C.JUROS,C.VALOR_TOTAL,C.VALOR_PAGO,C.STATUS,C.ID_CAD_FK '+
+            'FROM CONTA_PAG AS C INNER JOIN PESSOA AS P ON '+
+            'C.ID_CAD_FK = P.ID_CAD WHERE (C.DATA_VENC BETWEEN :dtincio AND :dtfim) '+
+            'AND C.STATUS =:status AND C.ID_CAD_FK =:idcad');
+            IBQuerygrid.ParamByName('dtincio').AsDate := DateTimePicker1.Date;
+            IBQuerygrid.ParamByName('dtfim').AsDate := DateTimePicker2.Date;
+            IBQueryGrid.ParamByName('status').AsString := 'FECHADA';
+            IBQuerygrid.ParamByName('idcad').Asinteger:= Strtoint(Eid.Text);
+            IBQueryGrid.active:= true;
+          end;
+    end;
+  end;
+ if (RadioGroup1.ItemIndex = 1) then
+  begin
+    if (RadioGroup2.ItemIndex = 0) then
+      begin
+        if (Eid.Text = '') then
+          begin
+            IBQueryGrid.active := false;
+            IBQueryGrid.sql.clear;
+            IBQueryGrid.sql.add('SELECT C.ID_CONT_PAG,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,'+
+            'C.DESC_CONT,C.DATA_CONT,C.DATA_VENC,C.DATA_PAG,'+
+            'C.JUROS,C.VALOR_TOTAL,C.VALOR_PAGO,C.STATUS,C.ID_CAD_FK '+
+            'FROM CONTA_PAG AS C INNER JOIN PESSOA AS P ON '+
+            'C.ID_CAD_FK = P.ID_CAD WHERE (C.DATA_CONT BETWEEN :dtincio AND :dtfim) '+
+            'AND C.STATUS =:status');
+            IBQuerygrid.ParamByName('dtincio').AsDate := DateTimePicker1.Date;
+            IBQuerygrid.ParamByName('dtfim').AsDate := DateTimePicker2.Date;
+            IBQueryGrid.ParamByName('status').AsString := 'ABERTA';
+            IBQueryGrid.active:= true;
+          end
+    else if (Eid.Text <> '') then
+      begin
+        IBQueryGrid.active := false;
+        IBQueryGrid.sql.clear;
+        IBQueryGrid.sql.add('SELECT C.ID_CONT_PAG,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,'+
+        'C.DESC_CONT,C.DATA_CONT,C.DATA_VENC,C.DATA_PAG,'+
+        'C.JUROS,C.VALOR_TOTAL,C.VALOR_PAGO,C.STATUS,C.ID_CAD_FK '+
+        'FROM CONTA_PAG AS C INNER JOIN PESSOA AS P ON '+
+        'C.ID_CAD_FK = P.ID_CAD WHERE (C.DATA_CONT BETWEEN :dtincio AND :dtfim) '+
+        'AND C.STATUS =:status AND C.ID_CAD_FK =:idcad');
+        IBQuerygrid.ParamByName('dtincio').AsDate := DateTimePicker1.Date;
+        IBQuerygrid.ParamByName('dtfim').AsDate := DateTimePicker2.Date;
+        IBQueryGrid.ParamByName('status').AsString := 'ABERTA';
+        IBQuerygrid.ParamByName('idcad').Asinteger:= Strtoint(Eid.Text);
+        IBQueryGrid.active:= true;
+      end;
+  end;
+   if (RadioGroup2.ItemIndex = 1) then
+      begin
+        if (Eid.Text = '') then
+          begin
+            IBQueryGrid.active := false;
+            IBQueryGrid.sql.clear;
+            IBQueryGrid.sql.add('SELECT C.ID_CONT_PAG,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,'+
+            'C.DESC_CONT,C.DATA_CONT,C.DATA_VENC,C.DATA_PAG,'+
+            'C.JUROS,C.VALOR_TOTAL,C.VALOR_PAGO,C.STATUS,C.ID_CAD_FK '+
+            'FROM CONTA_PAG AS C INNER JOIN PESSOA AS P ON '+
+            'C.ID_CAD_FK = P.ID_CAD WHERE (C.DATA_VENC BETWEEN :dtincio AND :dtfim) '+
+            'AND C.STATUS =:status;');
+            IBQuerygrid.ParamByName('dtincio').AsDate := DateTimePicker1.Date;
+            IBQuerygrid.ParamByName('dtfim').AsDate := DateTimePicker2.Date;
+            IBQueryGrid.ParamByName('status').AsString := 'ABERTA';
+            IBQueryGrid.active:= true;
+      end
+    else if (Eid.Text <> '') then
+      begin
+        IBQueryGrid.active := false;
+        IBQueryGrid.sql.clear;
+        IBQueryGrid.sql.add('SELECT C.ID_CONT_PAG,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,'+
+        'C.DESC_CONT,C.DATA_CONT,C.DATA_VENC,C.DATA_PAG,'+
+        'C.JUROS,C.VALOR_TOTAL,C.VALOR_PAGO,C.STATUS,C.ID_CAD_FK '+
+        'FROM CONTA_PAG AS C INNER JOIN PESSOA AS P ON '+
+        'C.ID_CAD_FK = P.ID_CAD WHERE (C.DATA_VENC BETWEEN :dtincio AND :dtfim) '+
+        'AND C.STATUS =:status AND C.ID_CAD_FK =:idcad');
+        IBQuerygrid.ParamByName('dtincio').AsDate := DateTimePicker1.Date;
+        IBQuerygrid.ParamByName('dtfim').AsDate := DateTimePicker2.Date;
+        IBQueryGrid.ParamByName('status').AsString := 'ABERTA';
+        IBQuerygrid.ParamByName('idcad').Asinteger:= Strtoint(Eid.Text);
+        IBQueryGrid.active:= true;
+      end;
+      end;
+  end;
+
+ end;
+
+
+
+
+procedure TFrmPagar.BitBtn3Click(Sender: TObject);
+begin
+Eid.Clear;Enome.Clear;
+DateTimePicker1.Date:=date;
+DateTimePicker2.Date:=date;
+end;
+
+procedure TFrmPagar.BitBtn4Click(Sender: TObject);
+begin
+if (IBQuerygrid.RecordCount > 0 )then
+begin
+if ((DbGrid1.Columns.Items[11].Field).AsString = 'ABERTA') then
+begin
+FrmRecPag.Esubtotal.text:=(DbGrid1.Columns.Items[2].Field).AsString;
+FrmRecPag.ETotal.text:=(DbGrid1.Columns.Items[2].Field).AsString;
+FrmRecPag.Esubtotal.text:=FormatFloat('#######0.00',Strtofloat(FrmRecPag.Esubtotal.text));
+FrmRecPag.ETotal.text:=FormatFloat('#######0.00',Strtofloat(FrmRecPag.ETotal.text));
+frmRecPag.showmodal;
+end;
+end;
+end;
+
+procedure TFrmPagar.BitBtn5Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TFrmPagar.BitBtn6Click(Sender: TObject);
+begin
+if ((DbGrid1.Columns.Items[11].Field).AsString <> 'ABERTA') and (IBQuerygrid.RecordCount > 0 ) then
+begin
+Application.MessageBox('Não é possivel excluir! A conta já está paga.','Erro',MB_ICONERROR);
+end;
+if ((DbGrid1.Columns.Items[11].Field).AsString = 'ABERTA') and (Application.MessageBox('Deseja realmente excuir?','Atenção Usuário',MB_YESNO+MB_ICONQUESTION)=6) and (IBQuerygrid.RecordCount > 0) then
+begin
+IBQueryExCont.Close;
+IBQueryExCont.SQL.Text:='UPDATE CONTA_PAG SET STATUS=:status WHERE ID_CONT_PAG = :id';
+IBQueryExCont.ParamByName('id').AsInteger:=Strtoint((DbGrid1.Columns.Items[0].Field).AsString);
+IBQueryExCont.ParamByName('status').AsString:='CANCELADA';
+IBQueryExCont.ExecSQL;
+IBQueryExCont.Active:=false;
+IBQueryExCont.Active:=true;
+end;
+end;
+
+procedure TFrmPagar.BitBtn7Click(Sender: TObject);
+begin
+BitBtn1.Enabled:=true;
+FrmNovoPagar.Eid.Clear;
+FrmNovoPagar.ENome.Clear;
+FrmNovoPagar.DateTimePicker1.Date:=date;
+FrmNovoPagar.DateTimePicker2.Date:=date+30;
+FrmnovoPagar.ShowModal;
+end;
+
+procedure TFrmPagar.BitBtn8Click(Sender: TObject);
+begin
+if (RadioGroup1.ItemIndex = 0) and (IBQuerygrid.RecordCount > 0) then
+Begin
+ppLabelDesc.Text:='Lista Contas Pagas de '+DateTostr(DateTimePicker1.date)+' até '+DateTostr(DateTimePicker2.date);
+ppReportRelpag.Print;
+End
+else if (RadioGroup1.ItemIndex = 1) and (IBQuerygrid.RecordCount > 0) then
+Begin
+ppLabelDesc.Text:='Lista Contas A Pagar de '+DateTostr(DateTimePicker1.date)+' até '+DateTostr(DateTimePicker2.date);
+ppReportRelpag2.Print;
+End;
+end;
+
+procedure TFrmPagar.BitBtn9Click(Sender: TObject);
+begin
+  if ((DbGrid1.Columns.Items[11].Field).AsString <> 'ABERTA') and (IBQuerygrid.RecordCount > 0 ) then
+    begin
+    Application.MessageBox('Não é Possivel Alterar Conta já Paga!','Erro',MB_ICONERROR);
+    end
+  else if ((DbGrid1.Columns.Items[11].Field).AsString = 'ABERTA') and (IBQuerygrid.RecordCount > 0) then
+    begin
+      FrmNovoPagar.BitBtn1.Enabled:=false;
+      FrmNovoPagar.Eidcont.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+      FrmNovoPagar.Enome.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+      FrmNovoPagar.Evalor.Text:=(DbGrid1.Columns.Items[2].Field).AsString;
+      FrmNovoPagar.DateTimePicker1.Date:=StrToDate((DbGrid1.Columns.Items[7].Field).AsString);
+      FrmNovoPagar.DateTimePicker2.Date:=StrToDate((DbGrid1.Columns.Items[8].Field).AsString);
+      FrmNovoPagar.Mref.Text:=(DbGrid1.Columns.Items[6].Field).AsString;
+      FrmNovoPagar.ShowModal;
+      FrmNovoPagar.BitBtn1.Enabled:=true;
+      IBQuerygrid.Active:=false;
+      IBQuerygrid.Active:=true;
+    end;
+end;
+
+procedure TFrmPagar.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
+Begin
+DBGrid1.Canvas.Font.Color := clBlack;
+   if (IBQuerygrid.FieldByName('DATA_VENC').Value < date) AND (IBQuerygrid.FieldByName('STATUS').Value = 'ABERTA') then
+   begin
+      DBGrid1.Canvas.Font.Color := clRed;
+   end;
+   DBGrid1.DefaultDrawColumnCell( Rect, DataCol, Column, State);
+end;
+
+procedure TFrmPagar.RadioGroup1Click(Sender: TObject);
+begin
+if (RadioGroup1.ItemIndex = 0) then
+begin
+DateTimePicker1.Date:=date-30;
+DateTimePicker2.Date:=date;
+RadioGroup2.Items.Clear;
+RadioGroup2.Items.Add('Data de Pagamento');
+RadioGroup2.Items.Add('Data de Vencimento');
+RadioGroup2.ItemIndex:=0;
+end
+else if (RadioGroup1.ItemIndex = 1) then
+begin
+RadioGroup2.Items.Clear;
+DateTimePicker1.Date:=date;
+DateTimePicker2.Date:=date+30;
+RadioGroup2.Items.Add('Data de Lançamento');
+RadioGroup2.Items.Add('Data de Vencimento');
+RadioGroup2.ItemIndex:=0;
+end;
+end;
+
+end.

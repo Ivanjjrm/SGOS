@@ -1,0 +1,115 @@
+unit UrecPag;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.ComCtrls, Data.DB, IBX.IBCustomDataSet, IBX.IBQuery, Uprincipal;
+
+type
+  TFrmRecPag = class(TForm)
+    EsubTotal: TEdit;
+    Edesc: TEdit;
+    Etotal: TEdit;
+    Bevel1: TBevel;
+    Bevel2: TBevel;
+    Bevel3: TBevel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Panel1: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    DateTimePicker1: TDateTimePicker;
+    Label4: TLabel;
+    IBQuerypag: TIBQuery;
+    ComboBox1: TComboBox;
+    Label5: TLabel;
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure EdescKeyPress(Sender: TObject; var Key: Char);
+    procedure EdescExit(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmRecPag: TFrmRecPag;
+
+implementation
+
+{$R *.dfm}
+
+uses Upagar;
+
+procedure TFrmRecPag.BitBtn1Click(Sender: TObject);
+begin
+if (ComboBox1.ItemIndex = -1) then
+begin
+showmessage('Selecione uma forma de Pagamento');
+ComboBox1.SetFocus;
+end;
+
+if (ComboBox1.ItemIndex <>-1) and (Application.MessageBox('Cofirma a data de Pagamento?','Atenção Usuário',MB_YESNO+MB_ICONQUESTION)=6) then
+begin
+IBQueryPag.Close;
+IBQueryPag.SQL.Text:='UPDATE CONTA_PAG SET'+
+' DATA_PAG=:dataPag,JUROS=:juros,VALOR_TOTAL=:total,STATUS=:status'+
+' WHERE ID_CONT_PAG =:idcont';
+IBQueryPag.ParamByName('idcont').AsInteger:=Strtoint((FrmPagar.DbGrid1.Columns.Items[0].Field).AsString);
+IBQueryPag.ParamByName('juros').AsFloat:=StrtoFloat(Edesc.Text);
+IBQueryPag.ParamByName('total').AsFloat:=StrtoFloat(Etotal.Text);
+IBQueryPag.ParamByName('dataPag').AsDate:=DateTimePicker1.Date;
+IBQueryPag.ParamByName('status').AsString:='FECHADA';
+IBQueryPag.ExecSQL;
+
+IBQueryPag.Close;
+IBQueryPag.SQL.Text:='INSERT INTO MOV_FINAN (ID_MOV,DATA_MOV,ORIGEM,TIPO_PAG,VALOR_MOV,HORA_MOV,ID_CONT_PAG)'+
+' VALUES (:idmov,:data_mov,:origem,:tipo_pag,:valor,:HORA,:idcontpag)';
+IBQueryPag.ParamByName('idmov').AsInteger:=0;
+IBQueryPag.ParamByName('data_mov').AsDate:=date;
+IBQueryPag.ParamByName('Origem').AsString:='C.A PAGAR';
+IBQueryPag.ParamByName('valor').AsFloat:=StrtoFloat(Etotal.Text);
+IBQuerypag.ParamByName('hora').AsTime:=time;
+IBQueryPag.ParamByName('tipo_pag').AsString:=ComboBox1.Text;
+IBQueryPag.ParamByName('idcontpag').AsInteger:= Strtoint((FrmPagar.DbGrid1.Columns.Items[0].Field).AsString);
+IBQueryPag.ExecSQL;
+FrmPagar.IBQuerygrid.Active:=false;
+FrmPagar.IBQueryGrid.Active:=true;
+close;
+end;
+end;
+
+procedure TFrmRecPag.BitBtn2Click(Sender: TObject);
+begin
+EsubTotal.Text:='0,00';
+Edesc.Text:='0,00';
+Etotal.Text:='0,00';
+CLOSE;
+end;
+
+procedure TFrmRecPag.EdescExit(Sender: TObject);
+var v1,v2,result:Double;
+begin
+v1:=StrToFloat(EsubTotal.Text);
+v2:=StrToFloat(EDesc.Text);
+result:=v2+V1;
+Etotal.Text:=FormatFloat('#######0.00',(result));
+Edesc.text:=FormatFloat('#######0.00',Strtofloat(Edesc.text));
+end;
+
+procedure TFrmRecPag.EdescKeyPress(Sender: TObject; var Key: Char);
+begin
+if not (key in ['0'..'9',',',#8,#13,'-']) then key :=#0;
+  If key = #13 then
+   Begin
+    Key:= #0;
+    BitBtn1.SetFocus;
+   End;
+
+end;
+
+end.

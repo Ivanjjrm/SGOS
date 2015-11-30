@@ -26,6 +26,7 @@ type
     IBQuerybuscaID_EQUIP: TIntegerField;
     IBQuerybuscaNOME_EQUIP: TIBStringField;
     IBQuerybuscaDATA_CAD: TDateField;
+    BitBtn5: TBitBtn;
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -33,6 +34,8 @@ type
     procedure EbuscaKeyPress(Sender: TObject; var Key: Char);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure EequipamentoKeyPress(Sender: TObject; var Key: Char);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -65,9 +68,15 @@ try
       except
        on e: Exception do
       begin
-        Application.MessageBox('Não é possivel Excluir! Existem referências deste equipamento no sistema!','Atenção Usuário',MB_ICONERROR);
+        Application.MessageBox('Não é possivel Excluir! Esse equipamento já está sendo usado em uma Ordem de Serviço!','Atenção Usuário',MB_ICONERROR);
       end;
   end;
+end;
+
+procedure TFrmEquipamento.BitBtn2Click(Sender: TObject);
+begin
+Eequipamento.Clear;
+Ebusca.Clear;
 end;
 
 procedure TFrmEquipamento.BitBtn3Click(Sender: TObject);
@@ -109,6 +118,16 @@ end;
     end;
 
 
+end;
+
+procedure TFrmEquipamento.BitBtn5Click(Sender: TObject);
+begin
+if (IBQuerybusca.RecordCount > 0) then
+    begin
+    Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+    Eequipamento.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+    Ebusca.Clear;
+    end;
 end;
 
 procedure TFrmEquipamento.DBGrid1DblClick(Sender: TObject);

@@ -1,0 +1,162 @@
+object Frmpagamento: TFrmpagamento
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Pagamento'
+  ClientHeight = 119
+  ClientWidth = 325
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Bevel1: TBevel
+    Left = 0
+    Top = 9
+    Width = 209
+    Height = 33
+  end
+  object Bevel2: TBevel
+    Left = 0
+    Top = 45
+    Width = 209
+    Height = 33
+  end
+  object Bevel3: TBevel
+    Left = 0
+    Top = 80
+    Width = 209
+    Height = 33
+  end
+  object Label1: TLabel
+    Left = 20
+    Top = 20
+    Width = 84
+    Height = 19
+    Caption = 'A Receber'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 4
+    Top = 56
+    Width = 100
+    Height = 19
+    Caption = 'Valor Apres.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 58
+    Top = 90
+    Width = 46
+    Height = 19
+    Caption = 'Troco'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Bevel4: TBevel
+    Left = 213
+    Top = -7
+    Width = 122
+    Height = 139
+  end
+  object DateTimePicker1: TDateTimePicker
+    Left = 216
+    Top = 8
+    Width = 103
+    Height = 21
+    Date = 42278.999228229160000000
+    Time = 42278.999228229160000000
+    TabOrder = 0
+  end
+  object EValor: TEdit
+    Left = 110
+    Top = 12
+    Width = 97
+    Height = 27
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+  end
+  object EvalorApresen: TEdit
+    Left = 110
+    Top = 48
+    Width = 97
+    Height = 27
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnExit = EvalorApresenExit
+    OnKeyPress = EvalorApresenKeyPress
+  end
+  object Etroco: TEdit
+    Left = 110
+    Top = 83
+    Width = 97
+    Height = 27
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 3
+  end
+  object BitBtn1: TBitBtn
+    Left = 215
+    Top = 46
+    Width = 107
+    Height = 36
+    Caption = 'Salvar'
+    TabOrder = 4
+    OnClick = BitBtn1Click
+  end
+  object BitBtn2: TBitBtn
+    Left = 215
+    Top = 81
+    Width = 107
+    Height = 36
+    Caption = 'Cancelar'
+    TabOrder = 5
+    OnClick = BitBtn2Click
+  end
+  object IBQueryPag: TIBQuery
+    Database = Form1.IBDatabase
+    Transaction = Form1.IBTransaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    Left = 56
+    Top = 32
+  end
+end

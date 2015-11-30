@@ -20,8 +20,8 @@ de pessoa fisica, o cadastro de pessoa juridica somente está pendente a validaçã
 
 Dia 21-08 Horário 19:20 até as 20:00 ---------------------------------------------------------------
 
-Foi dado a incio a implementação a tela de buscar pessoa, para que se conseguisse dar procedimento a
-tela de cadastro de Pessa para fazer os procedimentos de alterar e excluir.
+Foi dado a início a implementação a tela de buscar pessoa, para que se conseguisse dar continuidade a
+tela de cadastro de pessoa para fazer os procedimentos de alterar e excluir.
 
 Dia 22-08 Horário 00:05 até as 03:25 ---------------------------------------------------------------
 
@@ -30,7 +30,7 @@ Foi completado a emprelemntação da tela de FrmBuscaPessoa com 4 tipos de busca d
 que deseja alterar. E tambem emplementado a opção excluir pessoa. E por fim emplementada a função que valida
 o CNPJ do cadastro de pessoa Juridica, que tinha ficado pendente do dia 19-08.
 
-Dia 09:30 Horário 11:00 até as 03:25 ---------------------------------------------------------------
+Dia 24-08 Horário 11:00 até as 03:25 ---------------------------------------------------------------
 
 Foi completado Implementado a tela de Cadastro de Equipamento, E dado incio na implementação na tela de cadastro
 de Serviço
@@ -42,7 +42,7 @@ Foi concluido a tela de Cadastro Serviço e inciado a implementação da de configu
 
 Dia 29-08 Horário 17:02 até as 17:30 ---------------------------------------------------------------
 
-Foi implementado a tela de Configurações, somente faltando implementar a validação do CPF/CNPJ.
+Foi implementado a tela de Configurações.
 
 Dia 30-08 Horário 01:04 até as 04:29 ---------------------------------------------------------------
 
@@ -64,4 +64,156 @@ Dia 15-09 Horário 23:40 até as 00:51 -------------------------------------------
 
 Fiz a parte visual da tela de lançamento dos serviços, da Ocorrencia, E comessei a implementar
 o modulo, fazendo o select da os para a tela.
+
+Dia 25-09 Horário 23:30 até as 00:59 ---------------------------------------------------------------
+
+Corrigi erro do grid da tela de lançamento de serviços, e deixei em azul os item que que tiverem executado o serviço,
+e configurei as telas de busca de Ordem de serviço, e impelementei o botão cancelar O.s
+
+Dia 28-09 Horário 23:00 até as 01:30 ---------------------------------------------------------------
+
+Fiz uma função que soma todos os valores do serviços lançado do grid, implementei o botão exluir, serviço,
+e inativei os campos caso não tiver nenhum equipamento para ser lançado serviço;
+Estou implementando a tela de fechamento de ordem de Serviço; E impelmentei a verificação caso tiver equipamento sem
+serviço não fechar a ordem de serviço;
+
+Dia 29-09 Horário 21:10 até as 22:20 ---------------------------------------------------------------
+
+Impelementei a validação dos campos da tela de fechamento de os, e implementei o modulo de fechamento a vista e aprazo
+
+
+Dia 30-09 Horário 00:10 até as 02:03 ---------------------------------------------------------------
+
+Impelementei implementei o botão de cancelar O.S na tela de gerenciamento de ordens de Serviço para que o usuário não precise
+abrir a tela de ordem de serviço para cancelar; E inciei a impementação da tela de contas a recer para verificar se estava
+filtrando corretamente as ordens de serviço que eram fechados na forma de pagamento "APRAZO".
+E impelemente a tela de lançar uma conta a receber a vulso.E comessei a configurar o Form que usarei de template para relatorio
+
+
+Dia 01-10 Horário 23:00 até as 02:00  ---------------------------------------------------------------
+
+Terminei de implementar as funções de de calcular juros assim que o usuario clica em cima da conta
+para receber, e a tela de receber duplicata,
+Corrigi erro de vailidação da tela de fechamento de os, para não digitar somente numeros.
+
+Dia 03-10 Horário 00:04 até as 02:25  ---------------------------------------------------------------
+
+Iniciei a impelementação da tela de contas a pagar, implementei para o usuario cadastrar uma conta a pagar,
+e na tela de busca de contas a pagar implementei 4 tipos de buscas sendo as "contas Pagas" e as "Contas a pagar"
+ambas tendo dois tipos de datas para caso o ousuario queira filtrar;E implementei na tela de contas a receber 
+para ele considear a carencia caso o cliente estiver em catrazo e tiver dendo do periodo da carencia
+ele não vai incluir juros.
+
+Dia 04-10 Horário 08:30 até as 12:00  ---------------------------------------------------------------
+
+Dei continuidade na impelementação da tela de contas a pagar, corrigindo bug dos filtros, e fiz pequenas
+correções na tela de cadastro de pessoa, contas a receber e a tela de fechamento de ordem de serviço,
+tambem implementei na tela de pagamento de contas a receber e contas a pagar para estar registrando
+os movimentos referentes, e almentei um campo na base de dados na tabela MOV_FINAN, adicionando a coluna
+VALOR_MOV, para registrar o valor do movimento em apenas uma coluna para ficar mais simplificado no momento
+de gerar o relatorio de movimento financeiro.
+
+Dia 04-10 Horário 13:30 até as 15:00  ---------------------------------------------------------------
+
+Implementei a forma de pagamento Cartão,nas telas de fechamento de Ordem de serviço, e recebimento de
+contas a receber e contas a pagar.E inciei a implementação de um template prorprio para exibir os relatorios,
+
+
+Dia 05-10 Horário 00:07 até as 02:15  ---------------------------------------------------------------
+
+Apos varias pesquisas tentando fazer o template acabei deixando de lado, e configurei um relatorio na tela
+de gerenciamento de Ordens de serivço. E comessei a pesquisar os incones que irei colocar no sistema.
+
+Dia 06-10 Horário 00:10 até as 03:15  ---------------------------------------------------------------
+
+Conseguir baixar umas imagens e inciei a modelagens dos botãos, e corrigi pequenos erros, ao decorrer as telas
+do sistema para fazer verificações se estava funcionando corretamente. E corrigir erro ao emitir o relatorio de
+lista de O.S que filtrava todas as os mesmo sem não ter filrado nenhuna ordem de serviço.
+
+Dia 07-10 Horário 00:00 até as 01:15  ---------------------------------------------------------------
+
+Reformulei a tela de contas a receber, para não ser preciso ser feita a tela de estatistica das contas recebidas,
+e estudei sobre o aceressimo dos campos nas tabelas de contas a pagar, receber e MovFinanceiro.
+
+
+Dia 08-10 Horário 00:00 até as 03:15  --------------------------------------------------------------- 
+
+fiz alterações no banco de dados natabela CONTA_PAG, e CONTA_REC, adicionando a tabela "VALOR_PAGOU" para
+ter uma maior consistencia para salvar o valor da conta quando lançada e volar de quando ela foi paga,
+E adicionei a coluna HORA_MOV na tabela Movimento FIANCEIRO, para facilitar que o usuario identifique
+o momento do dia que foi feito a movimentação financeira.
+E fiz as alterações no codigo do sistemas em todas a telas de fechamento para considerar as novas colunas que
+alterei, e implementei filtros nas tela de contas a receber sendo as Recebidas e a Receber.
+E por fim configurei um relatorio de contas pagas no modulo de contas a pagar.
+
+Dia 09-10 Horário 00:10 até as 01:30  --------------------------------------------------------------- 
+
+Implementei os relatorios de contas a pagar.
+
+
+Dia 10-10 Horário 00:10 até as 02:21  --------------------------------------------------------------- 
+
+Implementei os relatorios Detalhamento de os, na tela de Gerenciamento de Ordem de serviço,
+e Na tela de fechamento de os.
+E deixei visivel o campo codigo do item, para que o ususario use como referencia do produto.
+
+Dia 11-10 Horário 00:10 até as 02:21  --------------------------------------------------------------- 
+
+Configurei relatorios de contas a receber.
+
+
+Dia 12-10 Horário 13:00 até as 19:00  --------------------------------------------------------------- 
+
+Configurei relatorio de duplicata e de movimento financeiro;
+
+
+Dia 12-10 Horário 23:30 até as 02:00  --------------------------------------------------------------- 
+
+Terminei de confirura o relatorio de Movimento financeiro e verifiquei pequenos erros de usabilidade
+do sistema.
+
+
+Dia 13-10 Horário 21:40 até as 02:16  --------------------------------------------------------------- 
+
+coloquei incones em todas as telas, e imagens para o sistema ficar com um ambiente mais agradavel,
+alterei a tela de splash e estou implementando o instalador do sistema.
+
+
+
+=========================================
+TEMPO GASTO
+
+110
+125
+180
+040
+200
+260
+083
+028
+205	
+106
+071
+089
+150
+070
+128
+180
+210
+090
+128
+175
+075
+195
+075
+195
+080
+131
+360
+150
+276
+
+
+
+
 

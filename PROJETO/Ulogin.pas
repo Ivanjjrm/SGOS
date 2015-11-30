@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Data.DB,
-  IBX.IBCustomDataSet, IBX.IBQuery;
+  IBX.IBCustomDataSet, IBX.IBQuery, Vcl.Imaging.pngimage, Vcl.ExtCtrls;
 
 type
   TFrmlogin = class(TForm)
@@ -16,6 +16,7 @@ type
     BitBtn1: TBitBtn;
     BitBtn2: TBitBtn;
     IBQueryBusca: TIBQuery;
+    Image1: TImage;
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -42,6 +43,7 @@ Elogin.text:=trim(Elogin.text);
 if (Elogin.text = '') then
 begin
 showmessage('Campo do usuário está vazio!');
+Elogin.SetFocus;
 end;
 if (Elogin.text <> '') then
 begin

@@ -6,7 +6,9 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Buttons, Vcl.Menus, Vcl.ButtonGroup,
   Vcl.ExtCtrls, IBX.IBDatabase, Data.DB, Vcl.StdCtrls, UitemOs, Uequipamento,
-  UConfiguracao, IBX.IBCustomDataSet, IBX.IBQuery;
+  UConfiguracao, IBX.IBCustomDataSet, IBX.IBQuery, Urelatorio, Vcl.Grids,
+  Vcl.DBGrids, Vcl.ImgList, ppDB, ppComm, ppRelatv, ppDBPipe, Data.DBXFirebird,
+  Data.FMTBcd, Vcl.DBCtrls, Data.SqlExpr;
 
 type
   TForm1 = class(TForm)
@@ -15,7 +17,6 @@ type
     PessoaFisica1: TMenuItem;
     PessoaJuridica1: TMenuItem;
     Equipamento1: TMenuItem;
-    PessoaJuridica2: TMenuItem;
     Panel1: TPanel;
     SpeedButton1: TSpeedButton;
     SpeedButton2: TSpeedButton;
@@ -38,11 +39,13 @@ type
     IBQueryConfg_CPFCPF_CNPJ: TIBStringField;
     IBQueryConfg_CPFJUROS: TIntegerField;
     IBQueryConfg_CPFCARENCIA: TIntegerField;
+    DataSourceConfig: TDataSource;
+    ppDBPipelineConfig: TppDBPipeline;
+    Image1: TImage;
     procedure SpeedButton4Click(Sender: TObject);
     procedure PessoaFisica1Click(Sender: TObject);
     procedure PessoaJuridica1Click(Sender: TObject);
     procedure Equipamento1Click(Sender: TObject);
-    procedure PessoaJuridica2Click(Sender: TObject);
     procedure Usurio1Click(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
@@ -95,13 +98,6 @@ begin
 Servico.ShowModal;
 end;
 
-procedure TForm1.PessoaJuridica2Click(Sender: TObject);
-begin
-FrmPessoa.CBtipo.ItemIndex:=1;
-FrmPessoa.MaskEditCPF_CNPJ.EditMask:='99.999.999/9999-99;9';
-FrmPessoa.ShowModal;
-end;
-
 procedure TForm1.Sistema1Click(Sender: TObject);
 var cont : integer;
 begin
@@ -131,21 +127,46 @@ Frmconfig.MaskEditCPF_CNPJ.EditMask:='99.999.999/9999-99;9';
 FrmConfig.MaskEditCPF_CNPJ.text:=IBQueryConfg_CPF.fieldByname('CPF_CNPJ').AsString;
 end;
 Frmconfig.showmodal;
+IBQueryConfg_CPF.Active:=false;
+IBQueryConfg_CPF.active := false;
+	  IBQueryConfg_CPF.sql.clear;
+	  IBQueryConfg_CPF.sql.add('SELECT * FROM CONFIGURACAO');
+    IBQueryConfg_CPF.active:= true;
+    FrmConfig.Enome.text:=IBQueryConfg_CPF.fieldByname('NOME').AsString;
+    FrmConfig.Efantasia.text:=IBQueryConfg_CPF.fieldByname('FANTASIA').AsString;
+    FrmConfig.Etel.text:=IBQueryConfg_CPF.fieldByname('TEL').AsString;
+    FrmConfig.Eemail.text:=IBQueryConfg_CPF.fieldByname('EMAIL').AsString;
+    FrmConfig.Ejuros.text:=IBQueryConfg_CPF.fieldByname('JUROS').AsString;
+    FrmConfig.Ecarencia.text:=IBQueryConfg_CPF.fieldByname('CARENCIA').AsString;
+    cont:= Length(IBQueryConfg_CPF.fieldByname('CPF_CNPJ').AsString);
+    IBQueryConfg_CPF.Active:=true;
 end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);
 begin
+FrmGos.Eid.Clear;
+FrmGos.Ebusca.Clear;
 FrmGos.ShowModal;
 end;
 
 procedure TForm1.SpeedButton2Click(Sender: TObject);
 begin
+IBQueryConfg_CPF.Close;
+IBQueryConfg_CPF.Open;
+receber.DateTimePicker1.Date:=date;
+Receber.DateTimePicker2.Date:=date+30;
+receber.Ebusca.Clear;
+receber.Eid.Clear;
 Receber.ShowModal;
 end;
 
 procedure TForm1.SpeedButton3Click(Sender: TObject);
 begin
-Pagar.ShowModal;
+Frmpagar.Eid.clear;
+Frmpagar.ENome.clear;
+FrmPagar.DateTimePicker1.Date:=date;
+FrmPagar.DateTimePicker2.Date:=date+30;
+FrmPagar.ShowModal;
 end;
 
 procedure TForm1.SpeedButton4Click(Sender: TObject);
@@ -155,7 +176,9 @@ end;
 
 procedure TForm1.SpeedButton5Click(Sender: TObject);
 begin
-caixa.ShowModal;
+FrmMovFinan.DateTimePicker1.Date:=date;
+FrmMovFinan.DateTimePicker2.Date:=date;
+FrmMovFinan.ShowModal;
 end;
 
 procedure TForm1.SpeedButton6Click(Sender: TObject);

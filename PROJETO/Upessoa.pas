@@ -92,7 +92,14 @@ Var
 d1,d4,xx,nCount,resto,digito1,digito2 : Integer;
 Check : String;
 Begin
-
+ if ((xCPF = '00000000000') or (xCPF = '11111111111')
+ or (xCPF = '22222222222') or (xCPF = '33333333333') or
+ (xCPF = '44444444444') or (xCPF = '55555555555') or
+ (xCPF = '66666666666') or (xCPF = '7777777777') or
+ (xCPF = '88888888888') or (xCPF = '99999999999')) then
+ begin TestaCpf := false;
+ exit;
+ end;
 
 try
 

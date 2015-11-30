@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids,
   Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Buttons, Uprincipal, Data.DB,
-  IBX.IBCustomDataSet, IBX.IBQuery, Uequipamento, Vcl.Mask, Vcl.ComCtrls;
+  IBX.IBCustomDataSet, IBX.IBQuery, Uequipamento, Vcl.Mask, Vcl.ComCtrls, UGOS;
 
 type
   TFrmNovaOs = class(TForm)
@@ -30,7 +30,6 @@ type
     IBQueryEquipID_EQUIP: TIntegerField;
     IBQueryEquipNOME_EQUIP: TIBStringField;
     IBQueryEquipDATA_CAD: TDateField;
-    DBLookupComboBox1: TDBLookupComboBox;
     IBQuerycad: TIBQuery;
     IBQuerymax: TIBQuery;
     IBQuerymaxMAX: TIntegerField;
@@ -44,6 +43,9 @@ type
     BitBtn7: TBitBtn;
     DateTimePicker1: TDateTimePicker;
     ad: TLabel;
+    DBLookupComboBox1: TDBLookupComboBox;
+    Image1: TImage;
+    Label5: TLabel;
     procedure BitBtn6Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -57,6 +59,7 @@ type
     procedure BitBtn7Click(Sender: TObject);
     procedure DBLookupComboBox1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -153,13 +156,63 @@ end;
 procedure TFrmNovaOs.BitBtn4Click(Sender: TObject);
 begin
 IBQueryCad.Close;
-     IBQueryCad.SQL.Text:='UPDATE OS  SET DATA_ABERTA WHERE ID_OS =:id';
+     IBQueryCad.SQL.Text:='UPDATE OS SET DATA_ABERTA=:data WHERE ID_OS =:id';
      IBQuerycad.ParamByName('id').Asinteger:=Strtoint(DBEidOs.Text);
      IBQuerycad.ParamByName('data').AsDate:=DateTimePicker1.Date;
      IBQuerycad.ExecSQL;
 
+   if (Application.MessageBox('Deseja imprimir Ordem de Serviço?','Atenção Usuário',MB_YESNO+MB_ICONQUESTION)=6) then
+    begin
+       FrmGos.IBQueryPedOs.active := false;
+        FrmGos.IBQueryPedOs.sql.clear;
+        FrmGos.IBQueryPedOs.sql.add('SELECT I.ID_ITEM,I.DEFEITO,I.IDENTIFICACAO,I.DESC_SERVICO,I.VALOR,'+
+        ' I.ID_SERV_FK,I.ID_EQUIP_FK,I.ID_OS_FK,E.NOME_EQUIP,'+
+        ' O.SUBTOTAL,O.DESCONTO,O.TOTAL,O.DATA_ABERTA,O.DATA_FECHADA,'+
+        ' O.STATUS FROM ITEM_OS AS I INNER JOIN EQUIPAMENTO AS E ON '+
+        ' I.ID_EQUIP_FK = E.ID_EQUIP'+
+        ' INNER JOIN OS AS O ON '+
+        ' I.ID_OS_FK = O.ID_OS WHERE I.ID_OS_FK = :id');
+        FrmGos.IBQueryPedOs.ParamByName('id').AsInteger := Strtoint(DBEidOs.Text);
+        FrmGos.IBQueryPedOs.active:= true;
+
+        FrmGos.IBQueryCliente.active := false;
+        FrmGos.IBQuerycliente.sql.clear;
+        FrmGos.IBQuerycliente.sql.add(' SELECT O.ID_OS,O.ID_CAD_FK,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,P.TIPO_CAD,P.ID_CID_FK,O.TOTAL, '+
+        'O.DATA_ABERTA,O.DATA_FECHADA,O.STATUS,C.NOME_CID FROM OS AS O '+
+        'INNER JOIN PESSOA AS P ON O.ID_CAD_FK = P.ID_CAD INNER JOIN CIDADE AS C ON P.ID_CID_FK = C.ID_CID  WHERE ID_OS =:idos');
+        FrmGos.IBQuerycliente.ParamByName('idos').AsInteger := Strtoint(DBEidOs.Text);
+        FrmGos.IBQuerycliente.active:= true;
+        FrmGos.ppReportPedOs.print;
+    end;
+
+     if (Application.MessageBox('Deseja imprimir Etiquetas?','Atenção Usuário',MB_YESNO+MB_ICONQUESTION)=6) then
+        begin
+        FrmGos.IBQueryPedOs.active := false;
+        FrmGos.IBQueryPedOs.sql.clear;
+        FrmGos.IBQueryPedOs.sql.add('SELECT I.ID_ITEM,I.DEFEITO,I.IDENTIFICACAO,I.DESC_SERVICO,I.VALOR,'+
+        ' I.ID_SERV_FK,I.ID_EQUIP_FK,I.ID_OS_FK,E.NOME_EQUIP,'+
+        ' O.SUBTOTAL,O.DESCONTO,O.TOTAL,O.DATA_ABERTA,O.DATA_FECHADA,'+
+        ' O.STATUS FROM ITEM_OS AS I INNER JOIN EQUIPAMENTO AS E ON '+
+        ' I.ID_EQUIP_FK = E.ID_EQUIP'+
+        ' INNER JOIN OS AS O ON '+
+        ' I.ID_OS_FK = O.ID_OS WHERE I.ID_OS_FK = :id');
+        FrmGos.IBQueryPedOs.ParamByName('id').AsInteger := Strtoint(DBEidOs.Text);
+        FrmGos.IBQueryPedOs.active:= true;
+
+        FrmGos.IBQueryCliente.active := false;
+        FrmGos.IBQuerycliente.sql.clear;
+        FrmGos.IBQuerycliente.sql.add(' SELECT O.ID_OS,O.ID_CAD_FK,P.NOME,P.ENDERECO,P.TEL,P.CPF_CNPJ,P.TIPO_CAD,P.ID_CID_FK,O.TOTAL, '+
+        'O.DATA_ABERTA,O.DATA_FECHADA,O.STATUS,C.NOME_CID FROM OS AS O '+
+        'INNER JOIN PESSOA AS P ON O.ID_CAD_FK = P.ID_CAD INNER JOIN CIDADE AS C ON P.ID_CID_FK = C.ID_CID  WHERE ID_OS =:idos');
+        FrmGos.IBQuerycliente.ParamByName('idos').AsInteger := Strtoint(DBEidOs.Text);
+        FrmGos.IBQuerycliente.active:= true;
+        FrmGos.ppReportEtiqueta.Print;
+        end;
+
 DBLookupComboBox1.KeyValue:=0;Edesc.Clear;Mdefeito.Clear;
 BitBtn1.Enabled:=true;
+Enome.Clear;Eidpessoa.Clear;
+Eiditem.Clear;
 close;
 IBQuerygrid.Active:=false;
 end;
@@ -190,6 +243,7 @@ procedure TFrmNovaOs.BitBtn5Click(Sender: TObject);
         DateTimePicker1.Date;
         DBEidOs.Clear;Enome.Clear;Eidpessoa.Clear;
         IBQuerygrid.Active:=false;
+        BitBtn1.Enabled:=true;
         end;
     end;
 
@@ -250,8 +304,17 @@ if (Key = VK_DELETE) then
 DBLookupComboBox1.KeyValue:=0;
 end;
 
+procedure TFrmNovaOs.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+FRmGos.Eid.Clear;
+FrmGos.Ebusca.Clear;
+FrmGos.IBQuerygrid.Active:=false;
+end;
+
 procedure TFrmNovaOs.FormShow(Sender: TObject);
 begin
+Enome.Clear;
+Eidpessoa.Clear;
 DBEidOs.Text:='';
 end;
 

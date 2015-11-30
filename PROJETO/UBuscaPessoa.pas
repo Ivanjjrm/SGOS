@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.Grids, Vcl.DBGrids,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Data.DB, IBX.IBCustomDataSet,
-  IBX.IBQuery, Vcl.Menus, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, Uos;
+  IBX.IBQuery, Vcl.Menus, Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnPopup, Uos,
+  UnovaReceber, UGOS, UnovoPagar;
 
 type
   TFrmBuscaPessoa = class(TForm)
@@ -45,6 +46,9 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure DBGrid1KeyPress(Sender: TObject; var Key: Char);
     procedure BitBtn2Click(Sender: TObject);
+    procedure MaskEditCPF_CNPJKeyPress(Sender: TObject; var Key: Char);
+    procedure DBGrid1DblClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -58,7 +62,7 @@ implementation
 
 {$R *.dfm}
 
-uses Uprincipal, Upessoa;
+uses Uprincipal, Upessoa, Upagar, Ureceber;
 
 procedure TFrmBuscaPessoa.BitBtn1Click(Sender: TObject);
 begin
@@ -79,6 +83,7 @@ if (Ebusca.Text  = '') then // verifica se o campo está vazio
     IBQuerybusca.ParamByName('id').AsInteger := StrToInt(Ebusca.Text);
     IBQuerybusca.active:= true;
     Ebusca.Clear;
+    DBGrid1.SetFocus;
     End;
   End;
 
@@ -103,6 +108,7 @@ if (Ebusca.Text  = '') then // verifica se o campo está vazio
   ' FROM PESSOA AS P INNER JOIN CIDADE AS C ON P.ID_CID_FK = C.ID_CID WHERE P.CPF_CNPJ =:cpf_cnpj');
   IBQuerybusca.ParamByName('cpf_cnpj').AsString := MaskEditCPF_CNPJ.Text;
   IBQuerybusca.active:= true;
+  DBGrid1.SetFocus;
   End;
 except
   on e: Exception do
@@ -116,8 +122,18 @@ end;
 end;
 procedure TFrmBuscaPessoa.BitBtn2Click(Sender: TObject);
 begin
+Receber.Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+Receber.Ebusca.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+FrmGos.Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+FrmGos.Ebusca.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
 FrmnovaOs.Eidpessoa.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
 FrmnovaOs.Enome.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+FrmNovoReceber.Eid.text:=(DbGrid1.Columns.Items[0].Field).AsString;
+FrmNovoReceber.Ecliente.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+FrmNovoPagar.Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+FrmNovoPagar.ENome.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+Frmpagar.Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+Frmpagar.ENome.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
 close;
 end;
 
@@ -142,13 +158,13 @@ FrmPessoa.Eendereco.Text:=(DbGrid1.Columns.Items[3].Field).AsString;
 FrmPessoa.DBLookupComboBoxcid.KeyValue:=(DbGrid1.Columns.Items[4].Field).AsInteger;
 FrmPessoa.MaskEditCPF_CNPJ.Text:=(DbGrid1.Columns.Items[6].Field).AsString;
 FrmPessoa.Eid.Visible:=true;
-FrmPessoa.ShowModal;
 FrmPessoa.Eid.Visible:=false;
 if ((DbGrid1.Columns.Items[8].Field).AsString = 'FISICO') then
 FrmPessoa.CBTipo.ItemIndex:=0
 else if ((DbGrid1.Columns.Items[8].Field).AsString = 'JURIDICO') then
 FrmPessoa.CBTipo.ItemIndex:=1;
 end;
+FrmPessoa.ShowModal;
 end;
 
 procedure TFrmBuscaPessoa.BitBtn4Click(Sender: TObject);
@@ -158,6 +174,23 @@ end;
 
 procedure TFrmBuscaPessoa.BitBtn5Click(Sender: TObject);
 begin
+close;
+end;
+
+procedure TFrmBuscaPessoa.DBGrid1DblClick(Sender: TObject);
+begin
+Receber.Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+Receber.Ebusca.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+FrmGos.Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+FrmGos.Ebusca.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+FrmnovaOs.Eidpessoa.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+FrmnovaOs.Enome.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+FrmNovoReceber.Eid.text:=(DbGrid1.Columns.Items[0].Field).AsString;
+FrmNovoReceber.Ecliente.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+FrmNovoPagar.Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+FrmNovoPagar.ENome.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
+Frmpagar.Eid.Text:=(DbGrid1.Columns.Items[0].Field).AsString;
+Frmpagar.ENome.Text:=(DbGrid1.Columns.Items[1].Field).AsString;
 close;
 end;
 
@@ -179,7 +212,7 @@ end;
 if key =#13 then
 begin
 key:=#0;
-Perform(Wm_NextDlgCtl,0,0);
+BitBtn1.SetFocus;
 end;
 end;
 
@@ -189,6 +222,21 @@ begin
    Begin
     Key:= #0;
     Perform(Wm_NextDlgCtl,0,0);
+end;
+end;
+
+procedure TFrmBuscaPessoa.FormShow(Sender: TObject);
+begin
+Ebusca.SetFocus;
+end;
+
+procedure TFrmBuscaPessoa.MaskEditCPF_CNPJKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+  If key = #13 then
+   Begin
+    Key:= #0;
+    BitBtn1.SetFocus;
 end;
 end;
 

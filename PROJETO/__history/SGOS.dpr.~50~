@@ -1,0 +1,58 @@
+program SGOS;
+
+uses
+  Vcl.Forms,
+  Uprincipal in 'Uprincipal.pas' {Form1},
+  Ucidade in 'Ucidade.pas' {FrmCidade},
+  Uusuario in 'Uusuario.pas' {FrmUsuario},
+  Upessoa in 'Upessoa.pas' {FrmPessoa},
+  Uequipamento in 'Uequipamento.pas' {FrmEquipamento},
+  UServico in 'UServico.pas' {Servico},
+  UGOS in 'UGOS.pas' {FrmGos},
+  UBuscaPessoa in 'UBuscaPessoa.pas' {FrmBuscaPessoa},
+  Uos in 'Uos.pas' {FrmNovaOs},
+  UitemOs in 'UitemOs.pas' {FrmItemOs},
+  Ureceber in 'Ureceber.pas' {Receber},
+  UbuscasReceber in 'UbuscasReceber.pas' {BuscaReceber},
+  UnovaReceber in 'UnovaReceber.pas' {FrmNovoReceber},
+  Upagar in 'Upagar.pas' {FrmPagar},
+  UnovoPagar in 'UnovoPagar.pas' {FrmNovoPagar},
+  Ucaixa in 'Ucaixa.pas' {Caixa},
+  Vcl.Themes,
+  Vcl.Styles,
+  Ulogin in 'Ulogin.pas' {Frmlogin},
+  Usplash in 'Usplash.pas' {FrmSplash},
+  UConfiguracao in 'UConfiguracao.pas' {FrmConfig},
+  UfechamentoOs in 'UfechamentoOs.pas' {Frmfechamento},
+  Urelatorio in 'Urelatorio.pas' {FrmRelatorio},
+  Upagamento in 'Upagamento.pas' {Frmpagamento};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFrmCidade, FrmCidade);
+  Application.CreateForm(TFrmSplash, FrmSplash);
+  Application.CreateForm(TFrmUsuario, FrmUsuario);
+  Application.CreateForm(TFrmPessoa, FrmPessoa);
+  Application.CreateForm(TFrmEquipamento, FrmEquipamento);
+  Application.CreateForm(TServico, Servico);
+  Application.CreateForm(TFrmGos, FrmGos);
+  Application.CreateForm(TFrmBuscaPessoa, FrmBuscaPessoa);
+  Application.CreateForm(TFrmNovaOs, FrmNovaOs);
+  Application.CreateForm(TFrmItemOs, FrmItemOs);
+  Application.CreateForm(TReceber, Receber);
+  Application.CreateForm(TBuscaReceber, BuscaReceber);
+  Application.CreateForm(TFrmNovoReceber, FrmNovoReceber);
+  Application.CreateForm(TFrmPagar, FrmPagar);
+  Application.CreateForm(TFrmNovoPagar, FrmNovoPagar);
+  Application.CreateForm(TCaixa, Caixa);
+  Application.CreateForm(TFrmlogin, Frmlogin);
+  Application.CreateForm(TFrmConfig, FrmConfig);
+  Application.CreateForm(TFrmfechamento, Frmfechamento);
+  Application.CreateForm(TFrmRelatorio, FrmRelatorio);
+  Application.CreateForm(TFrmpagamento, Frmpagamento);
+  Application.Run;
+end.

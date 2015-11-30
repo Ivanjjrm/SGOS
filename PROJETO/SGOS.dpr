@@ -13,16 +13,18 @@ uses
   Uos in 'Uos.pas' {FrmNovaOs},
   UitemOs in 'UitemOs.pas' {FrmItemOs},
   Ureceber in 'Ureceber.pas' {Receber},
-  UbuscasReceber in 'UbuscasReceber.pas' {BuscaReceber},
-  UnovaReceber in 'UnovaReceber.pas' {NovoReceber},
-  Upagar in 'Upagar.pas' {Pagar},
-  UnovoPagar in 'UnovoPagar.pas' {NovoPagar},
-  Ucaixa in 'Ucaixa.pas' {Caixa},
+  UnovaReceber in 'UnovaReceber.pas' {FrmNovoReceber},
+  Upagar in 'Upagar.pas' {FrmPagar},
+  UnovoPagar in 'UnovoPagar.pas' {FrmNovoPagar},
+  Ucaixa in 'Ucaixa.pas' {FrmMovFinan},
   Vcl.Themes,
   Vcl.Styles,
   Ulogin in 'Ulogin.pas' {Frmlogin},
   Usplash in 'Usplash.pas' {FrmSplash},
-  UConfiguracao in 'UConfiguracao.pas' {FrmConfig};
+  UConfiguracao in 'UConfiguracao.pas' {FrmConfig},
+  UfechamentoOs in 'UfechamentoOs.pas' {Frmfechamento},
+  Upagamento in 'Upagamento.pas' {Frmpagamento},
+  UrecPag in 'UrecPag.pas' {FrmRecPag};
 
 {$R *.res}
 
@@ -41,12 +43,14 @@ begin
   Application.CreateForm(TFrmNovaOs, FrmNovaOs);
   Application.CreateForm(TFrmItemOs, FrmItemOs);
   Application.CreateForm(TReceber, Receber);
-  Application.CreateForm(TBuscaReceber, BuscaReceber);
-  Application.CreateForm(TNovoReceber, NovoReceber);
-  Application.CreateForm(TPagar, Pagar);
-  Application.CreateForm(TNovoPagar, NovoPagar);
-  Application.CreateForm(TCaixa, Caixa);
+  Application.CreateForm(TFrmNovoReceber, FrmNovoReceber);
+  Application.CreateForm(TFrmPagar, FrmPagar);
+  Application.CreateForm(TFrmNovoPagar, FrmNovoPagar);
+  Application.CreateForm(TFrmMovFinan, FrmMovFinan);
   Application.CreateForm(TFrmlogin, Frmlogin);
   Application.CreateForm(TFrmConfig, FrmConfig);
+  Application.CreateForm(TFrmfechamento, Frmfechamento);
+  Application.CreateForm(TFrmpagamento, Frmpagamento);
+  Application.CreateForm(TFrmRecPag, FrmRecPag);
   Application.Run;
 end.

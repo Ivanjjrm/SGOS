@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <MainSource>SGOS.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -37,6 +37,12 @@
     <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
@@ -71,6 +77,7 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <Icon_MainIcon>C:\Users\Ivan Junior\Desktop\icones\1444813738_tools_256x256x32.ico</Icon_MainIcon>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -80,6 +87,11 @@
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <Icon_MainIcon>SGOS_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -129,24 +141,20 @@
             <Form>Receber</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UbuscasReceber.pas">
-            <Form>BuscaReceber</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="UnovaReceber.pas">
-            <Form>NovoReceber</Form>
+            <Form>FrmNovoReceber</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Upagar.pas">
-            <Form>Pagar</Form>
+            <Form>FrmPagar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UnovoPagar.pas">
-            <Form>NovoPagar</Form>
+            <Form>FrmNovoPagar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Ucaixa.pas">
-            <Form>Caixa</Form>
+            <Form>FrmMovFinan</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Ulogin.pas">
@@ -159,6 +167,18 @@
         </DCCReference>
         <DCCReference Include="UConfiguracao.pas">
             <Form>FrmConfig</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UfechamentoOs.pas">
+            <Form>Frmfechamento</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Upagamento.pas">
+            <Form>Frmpagamento</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UrecPag.pas">
+            <Form>FrmRecPag</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

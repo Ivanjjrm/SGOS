@@ -13,7 +13,8 @@ type
     Bevel1: TBevel;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
+    Bevel2: TBevel;
+    Image1: TImage;
     procedure Timer1Timer(Sender: TObject);
   private
     { Private declarations }
@@ -47,6 +48,7 @@ Label1.Caption:='Verificando Conexão com a base de Dados';
 Sleep(1000);
 ProgressBar1.Position:=45;
 Sleep(400);
+
   caminho:= ParamStr(0);
   caminho:=ExtractFilePath(caminho);
   camino1 := (caminho+'ENDERECO.CFG');
@@ -74,6 +76,7 @@ end;
 end;
 
    Closefile(f);
+
 
 ProgressBar1.Position:=50;
 Sleep(300);
